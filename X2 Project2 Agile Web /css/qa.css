@@ -1,0 +1,27 @@
+﻿.tbCss {
+    margin-top: 10px;
+}
+
+    .tbCss tr {
+        padding: 2px 2px 2px 2px;
+        border: solid 2px #000;
+    }
+
+    .tbCss td {
+        padding: 2px 2px 2px 2px;
+        border: solid 2px #000;
+    }
+
+.tbSbmtCss {
+    margin-top: 10px;
+}
+
+    .tbSbmtCss tr {
+        padding: 0px 0px 0px 0px;
+        border: solid 0px #000;
+    }
+
+    .tbSbmtCss td {
+        padding: 0px 0px 0px 0px;
+        border: solid 0px #000;
+    }
