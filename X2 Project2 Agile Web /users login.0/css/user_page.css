@@ -21,12 +21,14 @@ button:hover {
   flex-wrap: wrap;
 }
 
-ul {
-  margin-top: 50px;
-  /* border: 1px solid black; */
-}
-
 .nav_ul {
   width: 200px;
   margin-right: 0;
+}
+
+.user_view {
+  margin-top: 50px;
+  /* border: 1px solid black; */
+  width: 270px;
+  height: 350px;
 }
