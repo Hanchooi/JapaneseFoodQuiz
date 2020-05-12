@@ -48,9 +48,10 @@ li {
 }
 
 ul {
-  width: 200px;
   margin-top: 80px;
+  margin-right: 2rem;
 }
+
 li {
   padding-left: 0;
 }
