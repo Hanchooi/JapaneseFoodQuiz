@@ -1,0 +1,13 @@
+p{
+    text-align: right;
+    margin-top:30px;
+    margin-right: 230px;
+}
+
+.button_position{
+    margin:50px auto;
+    width: 100px;
+}
+button{
+    width: 100px;
+}
