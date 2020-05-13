@@ -1,0 +1,6 @@
+#git.ignore
+.vscode/*
+X2 Project2 Agile Web/__pycache__/*
+X2 Project2 Agile Web/venv/*
+.DS_Store
+X2 Project2 Agile Web/.DS_Store
