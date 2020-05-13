@@ -1,2 +1,3 @@
 # JapeneseFoodQuiz
-Project 2 for CITS5505
+
+Japanese Food Quiz
