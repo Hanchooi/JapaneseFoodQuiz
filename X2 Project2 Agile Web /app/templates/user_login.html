@@ -16,20 +16,28 @@
       >
     </div>
     <div class="box">
-      <form>
+      <form action="" method="post">
+        {{ form.hidden_tag()}}
         <p class="textPosition">
-          User ID: <input type="text" style="margin-left: 8px;" />
+          {{ form.username.label }} {{ form.username(size = 32)}} {% for error
+          in form.username.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
         </p>
-        <p class="textPosition">Password: <input type="password" /></p>
+        <p class="textPosition">
+          {{ form.password.label }} {{ form.password(size = 32)}} {% for error
+          in form.password.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="textPosition">
+          {{ form.submit (class="button2")}}
+        </p>
       </form>
       <p class="textPosition">
         <button>Forget Password</button>
-        <a href="/user_page"> <button>Login</button></a>
-      </p>
-      <p class="textPosition">
-        No account?
         <a href="/user_register"
-          ><button class="button_position">Sign Up</button></a
+          ><button class="button_position button2">Sign Up</button></a
         >
       </p>
     </div>

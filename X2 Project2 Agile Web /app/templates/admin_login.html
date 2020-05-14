@@ -16,17 +16,26 @@
       >
     </div>
     <div class="box">
-      <form>
+      <form action="" method="post">
+        {{ form.hidden_tag()}}
         <p class="textPosition">
-          <a href="/manage_quiz">
-            Admin Id: <input type="text" style="margin-left: 8px;" />
-          </a>
+          {{ form.username.label }} {{ form.username(size = 32)}} {% for error
+          in form.username.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
         </p>
-        <p class="textPosition">Password: <input type="password" /></p>
+        <p class="textPosition">
+          {{ form.password.label }} {{ form.password(size = 32)}} {% for error
+          in form.password.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="textPosition">
+          {{ form.submit (class="button2",style="text-align: center;")}}
+        </p>
       </form>
       <p class="textPosition">
         <button>Forget Password</button>
-        <a href="/manage_quiz"> <button>Login</button></a>
       </p>
     </div>
   </body>

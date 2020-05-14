@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
-from app.forms import LoginForm
+from app.forms import LoginForm, AdminForm
 
 
 @app.route('/')
@@ -39,11 +39,6 @@ def upload_quiz():
     return render_template('upload_quiz.html')
 
 
-@app.route('/user_login')
-def user_login():
-    return render_template('user_login.html')
-
-
 @app.route('/user_page')
 def user_page():
     return render_template('user_page.html')
@@ -54,10 +49,33 @@ def user_register():
     return render_template('user_register.html')
 
 
-@app.route('/admin')
-@app.route('/admin_login')
+@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
-    return render_template('admin_login.html')
+
+    form = AdminForm()
+
+    if form.validate_on_submit():
+        flash("Login requested for user {}, remember_me={}".format(
+            form.username.data, form.remember_me.data
+        ))
+        return redirect('/manage_quiz')
+
+    return render_template('admin_login.html', form=form)
+
+
+@app.route('/user_login', methods=['GET', 'POST'])
+def user_login():
+
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        flash("Login requested for user {}, remember_me={}".format(
+            form.username.data, form.remember_me.data
+        ))
+        return redirect('/user_page')
+
+    return render_template('user_login.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
