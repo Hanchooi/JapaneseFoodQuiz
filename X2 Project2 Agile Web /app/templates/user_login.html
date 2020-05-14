@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/user_login.css" />
-    <title>User Login</title>
-  </head>
-  <body>
+    <link href="/static/style.css" rel="stylesheet" />
+
+    {% extends 'base.html' %} {% block content %}
+
     <div class="top">
       <a class="top_title" href="/index"
         ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
@@ -41,5 +40,7 @@
         >
       </p>
     </div>
-  </body>
+
+    {% endblock %}
+  </head>
 </html>

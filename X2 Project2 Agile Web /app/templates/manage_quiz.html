@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/manage_quiz.css" />
-    <title>Admin Page</title>
-  </head>
 
-  <body>
+    {% extends 'base.html' %} {% block content %}
+
     <div class="top">
       <a class="top_title" href="/index"
         ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
@@ -18,23 +16,22 @@
       <h3>Welcome | XXX</h3>
     </div>
     <div class="main">
-      <div class="navbar">
-        <ul class="nav_ul">
-          <li class="nav_list">
+      <div class="navbar2">
+        <ul class="nav_ul2">
+          <li class="nav_list2">
             <a href="/manage_quiz"><button>Manage Quizzes</button> </a>
           </li>
-          <li class="nav_list">
+          <li class="nav_list2">
             <a href="/upload_question_set"><button>Upload Quizzes</button> </a>
           </li>
-          <li class="nav_list">
+          <li class="nav_list2">
             <a href="/manage_user"><button>Manage Users</button> </a>
           </li>
-          <li class="nav_list_bottom"><button>Change Name</button></li>
-          <li class="nav_list"><button>Change Password</button></li>
-          <li class="nav_list"><button>Sign Out</button></li>
+          <li class="nav_list2_bottom"><button>Change Name</button></li>
+          <li class="nav_list2"><button>Change Password</button></li>
+          <li class="nav_list2"><button>Sign Out</button></li>
         </ul>
       </div>
-
       <div class="main_part">
         <p class="search">Search: <input type="text" /></p>
 
@@ -62,5 +59,7 @@
         </div>
       </div>
     </div>
-  </body>
+
+    {% endblock %}
+  </head>
 </html>

@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <link href="/static/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/user_page.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Page</title>
-  </head>
 
-  <body>
-    <div class="top">
-      <a class="top_title" href="/index"
-        ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
-          JAPANESE FOOD QUIZ
-        </h3></a
-      >
-      <h3>Welcome | XXX</h3>
-    </div>
-    <div class="main">
-      <div class="navbar">
-        <ul class="nav_ul">
-          <li class="nav_list">
-            <a href="/user_page"><button>Results</button> </a>
-          </li>
-          <li class="nav_list">
-            <a href="/qa"><button>Attempt A Quiz</button> </a>
-          </li>
-          <li class="nav_list">
-            <a href="/upload_question_set"><button>Upload Quizzes</button> </a>
-          </li>
-          <li class="nav_list_bottom"><button>Change Name</button></li>
-          <li class="nav_list"><button>Change Password</button></li>
-          <li class="nav_list"><button>Sign Out</button></li>
-        </ul>
+    {% extends 'base.html' %} {% block content %}
+
+    <body>
+      <div class="top">
+        <a class="top_title" href="/index"
+          ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
+            JAPANESE FOOD QUIZ
+          </h3></a
+        >
+        <h3>Welcome | XXX</h3>
       </div>
-      <div class="main_part">
-        <div class="flexList">
-          <ul class="user_view">
-            <li><strong>Attempted Quizzes: </strong></li>
-            <li>General Japanese Quiz:</li>
-          </ul>
-          <ul class="user_view">
-            <li><strong>High Score:</strong></li>
-            <li>80/100</li>
-          </ul>
-          <ul class="user_view">
-            <li><strong>Number of attempts</strong></li>
-            <li>...</li>
+      <div class="main">
+        <div class="navbar2">
+          <ul class="nav_ul2">
+            <li class="nav_list2">
+              <a href="/user_page"><button>Results</button> </a>
+            </li>
+            <li class="nav_list2">
+              <a href="/qa"><button>Attempt A Quiz</button> </a>
+            </li>
+            <li class="nav_list2">
+              <a href="/upload_question_set"
+                ><button>Upload Quizzes</button>
+              </a>
+            </li>
+            <li class="nav_list2_bottom"><button>Change Name</button></li>
+            <li class="nav_list2"><button>Change Password</button></li>
+            <li class="nav_list2"><button>Sign Out</button></li>
           </ul>
         </div>
-        <div class="flexList">
-          <ul class="user_view">
-            <li><strong>Uploaded Quizzes:</strong></li>
-            <li>Sake (Edit)</li>
-          </ul>
-          <ul class="user_view">
-            <li><strong>Last Updated</strong></li>
-            <li>...</li>
-          </ul>
-          <ul class="user_view">
-            <li><strong>Number of attempts by other users</strong></li>
-            <li>...</li>
-          </ul>
+        <div class="main_part">
+          <div class="flexList">
+            <ul class="user_view">
+              <li><strong>Attempted Quizzes: </strong></li>
+              <li>General Japanese Quiz:</li>
+            </ul>
+            <ul class="user_view">
+              <li><strong>High Score:</strong></li>
+              <li>80/100</li>
+            </ul>
+            <ul class="user_view">
+              <li><strong>Number of attempts</strong></li>
+              <li>...</li>
+            </ul>
+          </div>
+          <div class="flexList">
+            <ul class="user_view">
+              <li><strong>Uploaded Quizzes:</strong></li>
+              <li>Sake (Edit)</li>
+            </ul>
+            <ul class="user_view">
+              <li><strong>Last Updated</strong></li>
+              <li>...</li>
+            </ul>
+            <ul class="user_view">
+              <li><strong>Number of attempts by other users</strong></li>
+              <li>...</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </body>
+
+      {% endblock %}
+  </head>
 </html>

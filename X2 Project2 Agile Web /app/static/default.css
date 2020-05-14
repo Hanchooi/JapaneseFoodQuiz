@@ -81,23 +81,23 @@ input:focus {
   margin-right: 2rem;
 }
 
-.navbar {
+.navbar2 {
   margin: 0px;
   padding: 0px;
   border-right: 1px solid #2f3e4e;
   height: 100%;
 }
 
-.nav_ul {
+.nav_ul2 {
   width: 200px;
   margin-right: 50px;
   margin-top: 50px;
 }
-.nav_list {
+.nav_list2 {
   padding-bottom: 20px;
 }
 
-.nav_list_bottom {
+.nav_list2_bottom {
   margin-top: 300%;
   margin-right: 0px;
   margin-left: 50px;
