@@ -1,5 +1,3 @@
-# JapeneseFoodQuiz
+# JapaneseFoodQuiz
 
 Japanese Food Quiz
-abc testing
-abc testing2
