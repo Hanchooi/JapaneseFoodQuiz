@@ -6,12 +6,58 @@ from app.forms import LoginForm
 @app.route('/')
 @app.route('/index')
 def index():
+    return render_template('index.html')
 
-    user = {'username': "Han"}
 
-    return render_template('index.html', user=user)
+@app.route('/qs')
+def qs():
+    return render_template('qs.html')
 
-    # return "Hello World"
+
+@app.route('/qa')
+def qa():
+    return render_template('qa.html')
+
+
+@app.route('/manage_quiz')
+def manage_quiz():
+    return render_template('manage_quiz.html')
+
+
+@app.route('/manage_user')
+def manage_user():
+    return render_template('manage_user.html')
+
+
+@app.route('/upload_question_set')
+def upload_question_set():
+    return render_template('upload_question_set.html')
+
+
+@app.route('/upload_quiz')
+def upload_quiz():
+    return render_template('upload_quiz.html')
+
+
+@app.route('/user_login')
+def user_login():
+    return render_template('user_login.html')
+
+
+@app.route('/user_page')
+def user_page():
+    return render_template('user_page.html')
+
+
+@app.route('/user_register')
+def user_register():
+    return render_template('user_register.html')
+
+
+@app.route('/admin')
+@app.route('/admin_login')
+def admin_login():
+    return render_template('admin_login.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])

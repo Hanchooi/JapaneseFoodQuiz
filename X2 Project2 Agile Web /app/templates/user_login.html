@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../css/default.css" />
-    <link rel="stylesheet" type="text/css" href="../css/admin_login.css" />
-    <title>Admin Login</title>
+    <link rel="stylesheet" type="text/css" href="static/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/user_login.css" />
+    <title>User Login</title>
   </head>
   <body>
     <div class="top">
-      <a class="top_title" href="index.htm"
+      <a class="top_title" href="/index"
         ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
           JAPANESE FOOD QUIZ
         </h3></a
@@ -18,15 +18,19 @@
     <div class="box">
       <form>
         <p class="textPosition">
-          <a href="manage_quiz.html">
-            Admin Id: <input type="text" style="margin-left: 8px;" />
-          </a>
+          User ID: <input type="text" style="margin-left: 8px;" />
         </p>
         <p class="textPosition">Password: <input type="password" /></p>
       </form>
       <p class="textPosition">
         <button>Forget Password</button>
-        <a href="manage_quiz.html"> <button>Login</button></a>
+        <a href="/user_page"> <button>Login</button></a>
+      </p>
+      <p class="textPosition">
+        No account?
+        <a href="/user_register"
+          ><button class="button_position">Sign Up</button></a
+        >
       </p>
     </div>
   </body>

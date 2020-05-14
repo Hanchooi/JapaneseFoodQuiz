@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../css/default.css" />
-    <link rel="stylesheet" type="text/css" href="../css/user_page.css" />
+    <link rel="stylesheet" type="text/css" href="static/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/user_page.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Page</title>
   </head>
 
   <body>
     <div class="top">
-      <a class="top_title" href="index.htm"
+      <a class="top_title" href="/index"
         ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
           JAPANESE FOOD QUIZ
         </h3></a
@@ -20,16 +20,14 @@
     <div class="main">
       <div class="navbar">
         <ul class="nav_ul">
-          <p class="nav_list" style="padding-left: 50px;">
-            <strong>Result</strong>
-          </p>
           <li class="nav_list">
-            <a href="qa.htm"><button>Attempt A Quiz</button> </a>
+            <a href="/user_page"><button>Results</button> </a>
           </li>
           <li class="nav_list">
-            <a href="../HTML/upload_question_set.html"
-              ><button>Upload Quizzes</button>
-            </a>
+            <a href="/qa"><button>Attempt A Quiz</button> </a>
+          </li>
+          <li class="nav_list">
+            <a href="/upload_question_set"><button>Upload Quizzes</button> </a>
           </li>
           <li class="nav_list_bottom"><button>Change Name</button></li>
           <li class="nav_list"><button>Change Password</button></li>
