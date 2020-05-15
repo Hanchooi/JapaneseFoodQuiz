@@ -57,7 +57,7 @@ def admin_login():
 
     if form.validate_on_submit():
         flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+            form.userID.data, form.remember_me.data
         ))
         return redirect('/manage_quiz')
 
@@ -71,7 +71,7 @@ def user_login():
 
     if form.validate_on_submit():
         flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+            form.userID.data, form.remember_me.data
         ))
         return redirect('/user_page')
 
@@ -85,7 +85,7 @@ def login():
 
     if form.validate_on_submit():
         flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+            form.userID.data, form.remember_me.data
         ))
         return redirect('/index')
 
