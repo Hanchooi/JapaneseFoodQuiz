@@ -21,18 +21,27 @@
     </div>
     <div class="main">
       <h2>Quiz Set Upload:</h2>
-      <form>
-        <p>Quiz Name: <input type="text" /></p>
-        <!--<p>Quiz Set: <input type = 'text' placeholder="Please select a Quiz Set"></p> -->
-        <p>Quiz Description: <input type="text" class="description" /></p>
-        <h4>Upload a Picture: <button>Select File</button></h4>
-        <p>
-          Preview:
-          <input class="preview" type="text" placeholder="Dreag To Adjust" />
-        </p>
-        <p><button>Next Question>>></button></p>
-      </form>
+      <div>
+        <form>
+          <p>Quiz Name: <input type="text" /></p>
+          <!--<p>Quiz Set: <input type = 'text' placeholder="Please select a Quiz Set"></p> -->
+          <p>Quiz Description: <input type="text" class="description" /></p>
+          <h4>Upload a Picture: <button>Select File</button></h4>
+          <p>
+            Preview:
+            <input
+              class="preview textPosition"
+              type="text"
+              placeholder="Drag To Adjust"
+            />
+          </p>
+        </form>
+        <a href="/upload_quiz">
+          <p><button>Next Question>>></button></p></a
+        >
+      </div>
     </div>
+    <div style="height: 50rem;"></div>
 
     {% endblock %}
   </head>

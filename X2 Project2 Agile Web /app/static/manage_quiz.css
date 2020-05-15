@@ -42,3 +42,8 @@ button {
   box-shadow: none;
   border: none;
 }
+
+li {
+  padding-left: 50px;
+  padding-bottom: 10px;
+}
