@@ -16,6 +16,7 @@ class SignUpForm(FlaskForm):
     displayName = StringField('Display Name:', validators=[DataRequired()])
     password = PasswordField('Password:', validators=[DataRequired()])
     retypePassword = PasswordField('Retype Password:', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign Up')
 
 class AdminForm(FlaskForm):

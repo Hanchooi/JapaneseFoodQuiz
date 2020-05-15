@@ -9,16 +9,36 @@
 
     <div class="top">
     </div>
-    <br />
     <div class="box">
-      <form>
-        <p>Display Name: <input type="text" /></p>
-        <p>User ID: <input type="text" /></p>
-        <p>Password: <input type="password" /></p>
-        <p>Repeat Password: <input type="password" /></p>
+      <form action="" method="post">
+        {{ form.hidden_tag()}}
+        <p class="#">
+          {{ form.displayName.label }} {{ form.displayName(size = 32)}} {% for error
+          in form.displayName.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="#">
+          {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
+          in form.userID.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="#">
+          {{ form.password.label }} {{ form.password(size = 32)}} {% for error
+          in form.password.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="#">
+          {{ form.retypePassword.label }} {{ form.retypePassword(size = 32)}} {% for error
+          in form.retypePassword.errors %}
+          <span style="color: red;"> [{{ error}}]</span>
+          {% endfor %}
+        </p>
+        <p class="#">
+          {{ form.submit (class="button2")}}
+        </p>
       </form>
-      <div class="button_position">
-        <a href="/user_page"><button class="button2">Sign Up</button></a>
-      </div>
     </div>
     {% endblock %}

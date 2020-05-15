@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
-from app.forms import LoginForm, AdminForm
+from app.forms import LoginForm, AdminForm, SignUpForm
 
 
 @app.route('/')
@@ -44,11 +44,6 @@ def user_page():
     return render_template('user_page.html')
 
 
-@app.route('/user_register')
-def user_register():
-    return render_template('user_register.html')
-
-
 @app.route('/admin', methods=['GET', 'POST'])
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
@@ -56,7 +51,7 @@ def admin_login():
     form = AdminForm()
 
     if form.validate_on_submit():
-        flash("Login requested for user {}, remember_me={}".format(
+        flash("Login requested for admin {}, remember_me={}".format(
             form.userID.data, form.remember_me.data
         ))
         return redirect('/manage_quiz')
@@ -90,3 +85,17 @@ def login():
         return redirect('/index')
 
     return render_template('login.html', form=form)
+
+
+@app.route('/user_register', methods=['GET', 'POST'])
+def user_signUp():
+
+    form = SignUpForm()
+
+    if form.validate_on_submit():
+        flash("Sign Up requested from user {}, remember_me={}".format(
+            form.userID.data, form.remember_me.data
+        ))
+        return redirect('/user_page')
+
+    return render_template('user_register.html', form=form)
