@@ -7,14 +7,14 @@
 
 .textPosition {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 2.5rem;
 }
 
 input {
-  width: 200px;
-  height: 30px;
-  /* margin-left: 20px; */
-  text-align: right;
+  width: 12.5rem;
+  height: 1.875rem;
+  /* margin-left: 1.25rem; */
+  text-align: left;
 }
 
 input:focus {
@@ -24,5 +24,5 @@ input:focus {
 }
 
 .button_position {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }

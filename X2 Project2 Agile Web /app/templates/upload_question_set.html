@@ -12,12 +12,6 @@
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
-      <a class="top_title" href="/index"
-        ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
-          JAPANESE FOOD QUIZ
-        </h3></a
-      >
-      <h3>Welcome | XXX</h3>
     </div>
     <div class="main">
       <h2>Quiz Set Upload:</h2>
@@ -26,18 +20,19 @@
           <p>Quiz Name: <input type="text" /></p>
           <!--<p>Quiz Set: <input type = 'text' placeholder="Please select a Quiz Set"></p> -->
           <p>Quiz Description: <input type="text" class="description" /></p>
-          <h4>Upload a Picture: <button>Select File</button></h4>
-          <p>
-            Preview:
-            <input
-              class="preview textPosition"
-              type="text"
-              placeholder="Drag To Adjust"
-            />
-          </p>
         </form>
+        <p style="margin-bottom: 0.1rem;">
+          Upload a Picture:
+          <input
+            class="preview"
+            style="text-align: center;"
+            type="text"
+            placeholder="Drag To Adjust"
+          />
+        </p>
+        <p><button>Select File</button></p>
         <a href="/upload_quiz">
-          <p><button>Next Question>>></button></p></a
+          <p><button class="button2">Upload Questions>>></button></p></a
         >
       </div>
     </div>

@@ -1,45 +1,41 @@
 .main {
   z-index: -1;
-  margin: 10px auto auto 3rem;
-  width: 900px;
-  /* height: 700px; */
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  /* padding: 50px; */
-  padding-top: 80px;
+  margin: 0.625rem auto auto 3rem;
+  width: 56.25rem;
+  /* height: 43.75rem; */
+  /* border: 0.0625rem solid black; */
+  border-radius: 0.625rem;
+  /* padding: 3.125rem; */
+  padding-top: 5rem;
   /* background-color: #4faa90; */
 }
 form {
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
-p {
+.right {
   text-align: right;
-  margin-top: 30px;
-  /* margin-right: 130px; */
+  margin-top: 1.875rem;
+  /* margin-right: 8.125rem; */
 }
 
-input {
-  width: 400px;
-  height: 30px;
+.wideInput {
+  width: 25rem;
+  height: 1.875rem;
 }
 
 .question_first {
-  height: 200px;
+  height: 12.5rem;
 }
 
 .preview {
-  height: 200px;
+  height: 12.5rem;
 }
 
 h4 {
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 
 .checkbox {
-  margin-left: 70px;
-}
-.choice_position {
-  margin-left: 500px;
-  bottom: 600px;
+  margin-left: 1.25rem;
 }
