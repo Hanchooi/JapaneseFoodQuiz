@@ -9,12 +9,6 @@
 
     <body>
       <div class="top">
-        <a class="top_title" href="/index"
-          ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
-            JAPANESE FOOD QUIZ
-          </h3></a
-        >
-        <h3>Welcome | XXX</h3>
       </div>
       <div class="main">
         <div class="navbar2">
@@ -30,8 +24,8 @@
                 ><button>Upload Quizzes</button>
               </a>
             </li>
-            <li class="nav_list2_bottom"><button>Change Name</button></li>
-            <li class="nav_list2"><button>Change Password</button></li>
+            <li class="nav_list2_bottom"><a href="/user_change_name"><button>Change Name</button></li>
+            <li class="nav_list2"><a href="/user_change_password"><button>Change Password</button></a></li>
             <li class="nav_list2"><button>Sign Out</button></li>
           </ul>
         </div>
@@ -68,5 +62,3 @@
       </div>
 
       {% endblock %}
-  </head>
-</html>

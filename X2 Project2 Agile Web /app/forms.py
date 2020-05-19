@@ -5,15 +5,38 @@ from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
 
-    username = StringField('User ID:', validators=[DataRequired()])
+    userID = StringField('User ID:', validators=[DataRequired()])
     password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+class SignUpForm(FlaskForm):
+    
+    userID = StringField('User ID:', validators=[DataRequired()])
+    displayName = StringField('Display Name:', validators=[DataRequired()])
+    password = PasswordField('Password:', validators=[DataRequired()])
+    retypePassword = PasswordField('Retype Password:', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Sign Up')
 
 class AdminForm(FlaskForm):
 
-    username = StringField('Admin ID:', validators=[DataRequired()])
+    userID = StringField('Admin ID:', validators=[DataRequired()])
     password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+class PasswordForm(FlaskForm):
+    
+    userID = StringField('ID:', validators=[DataRequired()])
+    oldPassword = PasswordField('Old Password:', validators=[DataRequired()])
+    newPassword = PasswordField('New Password:', validators=[DataRequired()])
+    retypePassword = PasswordField('Retype Password:', validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Change Password')
+
+class NameForm(FlaskForm):
+
+    userID = StringField('ID:', validators=[DataRequired()])    
+    newDisplayName = StringField('New Display Name:', validators=[DataRequired()])
+    submit = SubmitField('Change Name')

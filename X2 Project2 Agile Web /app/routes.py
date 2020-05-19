@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
-from app.forms import LoginForm, AdminForm
+from app.forms import LoginForm, AdminForm, SignUpForm, PasswordForm, NameForm
 
 
 @app.route('/')
@@ -44,11 +44,6 @@ def user_page():
     return render_template('user_page.html')
 
 
-@app.route('/user_register')
-def user_register():
-    return render_template('user_register.html')
-
-
 @app.route('/admin', methods=['GET', 'POST'])
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
@@ -56,8 +51,8 @@ def admin_login():
     form = AdminForm()
 
     if form.validate_on_submit():
-        flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+        flash("Login requested for Admin ID {}, remember_me={}, Password {}".format(
+            form.userID.data, form.remember_me.data, form.password.data
         ))
         return redirect('/manage_quiz')
 
@@ -70,23 +65,77 @@ def user_login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+        flash("Login requested for User ID {}, remember_me={}, Password {}".format(
+            form.userID.data, form.remember_me.data, form.password.data
         ))
         return redirect('/user_page')
 
     return render_template('user_login.html', form=form)
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/user_register', methods=['GET', 'POST'])
+def user_signUp():
 
-    form = LoginForm()
+    form = SignUpForm()
 
     if form.validate_on_submit():
-        flash("Login requested for user {}, remember_me={}".format(
-            form.username.data, form.remember_me.data
+        flash("Sign Up requested from userID {}, remember_me={}, Password {}, Display Name{} ".format(
+            form.userID.data, form.remember_me.data, form.password.data, form.displayName.data
         ))
-        return redirect('/index')
+        return redirect('/user_page')
 
-    return render_template('login.html', form=form)
+    return render_template('user_register.html', form=form)
+
+
+@app.route('/user_change_password', methods=['GET', 'POST'])
+def user_change_password():
+
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        flash("Password change requested from userID {}, remember_me={} to new password {}".format(
+            form.userID.data, form.remember_me.data, form.newPassword.data
+        ))
+        return redirect('/user_page')
+
+    return render_template('change_password.html', form=form)
+
+
+@app.route('/admin_change_password', methods=['GET', 'POST'])
+def admin_change_password():
+
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        flash("Password change requested from adminID {}, remember_me={} to new password {}".format(
+            form.userID.data, form.remember_me.data, form.newPassword.data
+        ))
+        return redirect('/manage_quiz')
+
+    return render_template('change_password.html', form=form)
+
+@app.route('/admin_change_name', methods=['GET', 'POST'])
+def admin_change_name():
+
+    form = NameForm()
+
+    if form.validate_on_submit():
+        flash("Name change requested from adminID {} to newDisplayName {}".format(
+            form.userID.data, form.newDisplayName.data
+        ))
+        return redirect('/manage_quiz')
+
+    return render_template('change_name.html', form=form)
+
+@app.route('/user_change_name', methods=['GET', 'POST'])
+def user_change_name():
+
+    form = NameForm()
+
+    if form.validate_on_submit():
+        flash("Name change requested from userID {} to newDisplayName {}".format(
+            form.userID.data, form.newDisplayName.data
+        ))
+        return redirect('/user_page')
+
+    return render_template('change_name.html', form=form)

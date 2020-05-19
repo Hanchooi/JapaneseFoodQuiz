@@ -1,41 +1,41 @@
 .main {
-  margin: 130px auto auto 3rem;
-  width: 900px;
-  height: 700px;
-  /* border: 1px solid black; */
-  /* border-radius: 10px; */
-  /* padding: 50px; */
+  margin: 8.125rem auto auto 3rem;
+  width: 56.25rem;
+  height: 43.75rem;
+  /* border: 0.0625rem solid black; */
+  /* border-radius: 0.625rem; */
+  /* padding: 3.125rem; */
 }
 
 form {
-  margin-top: 50px;
+  margin-top: 3.125rem;
 }
 
 p {
   text-align: right;
-  margin-top: 30px;
-  /* margin-right: 130px; */
+  margin-top: 1.875rem;
+  /* margin-right: 8.125rem; */
 }
 
 input {
-  width: 400px;
-  height: 30px;
+  width: 25rem;
+  height: 1.875rem;
 }
 
 .description {
-  height: 200px;
+  height: 12.5rem;
 }
 
 .preview {
-  height: 200px;
+  height: 12.5rem;
 }
 
 .upload_position {
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 
 h4 {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 1rem;
 }

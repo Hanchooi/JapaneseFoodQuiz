@@ -3,41 +3,35 @@
   <head>
     <link href="/static/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/default.css" />
-    <link rel="stylesheet" type="text/css" href="/static/admin_login.css" />
+    <link rel="stylesheet" type="text/css" href="/static/user_register.css" />
 
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
-      <a class="top_title" href="/index"
-        ><h3 style="margin: 0; padding: 0; font-size: 1.3rem;">
-          JAPANESE FOOD QUIZ
-        </h3></a
-      >
     </div>
     <div class="box">
       <form action="" method="post">
         {{ form.hidden_tag()}}
-        <p class="textPosition">
-          {{ form.username.label }} {{ form.username(size = 32)}} {% for error
-          in form.username.errors %}
+        <p class="#">
+          {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
+          in form.userID.errors %}
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
-        <p class="textPosition">
+        <p class="#">
           {{ form.password.label }} {{ form.password(size = 32)}} {% for error
           in form.password.errors %}
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
-        <p class="textPosition">
+        <p class="#">
           {{ form.submit (class="button2",style="text-align: center;")}}
         </p>
       </form>
-      <p class="textPosition">
-        <button>Forget Password</button>
+      <p class="#">
+        <a href="#" style="color:grey;">Forgot Password</a>
       </p>
     </div>
 
     {% endblock %}
-  </head>
-</html>
+

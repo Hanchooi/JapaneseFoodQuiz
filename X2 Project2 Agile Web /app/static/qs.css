@@ -1,13 +1,13 @@
 ﻿.tbCss {
-    margin-top: 10px;
+    margin-top: 0.625rem;
 }
 
     .tbCss tr {
-        padding: 2px 2px 2px 2px;
-        border: solid 2px #000;
+        padding: 0.125rem ;
+        border: solid 0.125rem #000;
     }
 
     .tbCss td {
-        padding: 2px 2px 2px 2px;
-        border: solid 2px #000;
+        padding: 0.125rem ;
+        border: solid 0.125rem #000;
     }

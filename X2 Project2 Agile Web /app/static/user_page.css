@@ -11,8 +11,8 @@ button:hover {
 }
 
 .main_part {
-  margin-left: 100px;
-  margin-top: 50px;
+  margin-left: 6.25rem;
+  margin-top: 3.125rem;
 }
 
 .flexList {
@@ -22,13 +22,13 @@ button:hover {
 }
 
 .nav_ul {
-  width: 200px;
+  width: 12.5rem;
   margin-right: 0;
 }
 
 .user_view {
-  margin-top: 50px;
-  /* border: 1px solid black; */
-  width: 270px;
-  height: 350px;
+  margin-top: 3.125rem;
+  /* border: 0.0625rem solid black; */
+  width: 16.875rem;
+  height: 21.875rem;
 }
