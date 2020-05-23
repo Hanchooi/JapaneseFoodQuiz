@@ -1,9 +1,9 @@
-from app import db
+from app import db, login
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-# Initializing basic user info
 
-
-class User(db.Model):
+class User(UserMixin, db.Model):
     __table_args__ = {'extend_existing': True}
     userID = db.Column(db.String, primary_key=True)
     email = db.Column(db.String(128))
@@ -17,9 +17,20 @@ class User(db.Model):
         self.password_hash = password_hash
         self.userID = userId
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     # Printing out which user is current
     def __repr__(self):
         return '<UserId {0}, email {1}>'.format(self.userID, self.email)
+
+@login.user_loader
+def load_user(userID):
+    return User.query.get(userID)
+
 
 class QuizSet(db.Model):
     __table_args__ = {'extend_existing': True}
