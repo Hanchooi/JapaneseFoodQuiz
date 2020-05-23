@@ -16,23 +16,20 @@
     <div class="main">
       <h2>Quiz Set Upload:</h2>
       <div>
-        <form>
-          <p>Quiz Name: <input type="text" /></p>
-          <!--<p>Quiz Set: <input type = 'text' placeholder="Please select a Quiz Set"></p> -->
-          <p>Quiz Description: <input type="text" class="description" /></p>
-        </form>
-        <p style="margin-bottom: 0.1rem;">
-          Upload a Picture:
-          <input
-            class="preview"
-            style="text-align: center;"
-            type="text"
-            placeholder="Drag To Adjust"
-          />
+        <form method="post" enctype="multipart/form-data">
+            <p>  {{ form.quizName.label }} <br> {{ form.quizName(size = 100)}}</p>
+            <p> {{ form.quizDescription.label }} <br> {{ form.quizDescription(size = 1000)}}</p>
+
+           <p style="margin-bottom: 0.1rem;">
+              {{ form.picture.label }} <br> {{ form.quizName(size = 100)}}
+           </p>
+            <p> {{ form.picture.label }} <br> {{ form.picture}}</p>
+        <p class="#">
+          {{ form.submit (class="button2")}}
         </p>
-        <p><button>Select File</button></p>
-        <a href="/upload_quiz">
-          <p><button class="button2">Upload Questions>>></button></p></a
+        </form>
+        <a href="/user_page">
+          <p><button class="button2">Back User Page>>></button></p></a
         >
       </div>
     </div>
