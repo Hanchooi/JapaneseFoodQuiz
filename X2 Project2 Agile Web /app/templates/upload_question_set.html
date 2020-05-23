@@ -17,13 +17,10 @@
       <h2>Quiz Set Upload:</h2>
       <div>
         <form method="post" enctype="multipart/form-data">
-            <p>  {{ form.quizName.label }} <br> {{ form.quizName(size = 100)}}</p>
-            <p> {{ form.quizDescription.label }} <br> {{ form.quizDescription(size = 1000)}}</p>
-
-           <p style="margin-bottom: 0.1rem;">
-              {{ form.picture.label }} <br> {{ form.quizName(size = 100)}}
-           </p>
-            <p> {{ form.picture.label }} <br> {{ form.picture}}</p>
+            {{ form.hidden_tag()}}
+            <p>  {{ form.quizName.label }} {{ form.quizName(size = 100)}}</p>
+            <p> {{ form.quizDescription.label }} {{ form.quizDescription(size = 1000)}}</p>
+            <p> {{ form.picture }}</p>
         <p class="#">
           {{ form.submit (class="button2")}}
         </p>

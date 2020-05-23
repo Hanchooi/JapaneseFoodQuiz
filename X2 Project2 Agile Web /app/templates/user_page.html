@@ -25,38 +25,46 @@
               </a>
             </li>
             <li class="nav_list2_bottom"><a href="/user_change_name"><button>Change Name</button></li>
-            <li class="nav_list2"><a href="/user_change_password"><button>Change Password</button></a></li>
-            <li class="nav_list2"><button>Sign Out</button></li>
+            <li class="nav_list2"><a href="/user_change_password"></a><button>Change Password</button></li>
+            <li class="nav_list2"><a href="/logout"></a><button>Sign Out</button></li>
           </ul>
         </div>
         <div class="main_part">
+          <h1 align="center"> welcome {{ username }} !</h1>>
           <div class="flexList">
-            <ul class="user_view">
-              <li><strong>Attempted Quizzes: </strong></li>
-              <li>General Japanese Quiz:</li>
-            </ul>
-            <ul class="user_view">
-              <li><strong>High Score:</strong></li>
-              <li>80/100</li>
-            </ul>
-            <ul class="user_view">
-              <li><strong>Number of attempts</strong></li>
-              <li>...</li>
-            </ul>
+
+              <table border="0px">
+              <tr>
+                  <th><strong>Attempted Quizzes Id</strong></th>
+                  <th><strong>Attempted Quizzes Name</strong></th>
+                  <th><strong>Score</strong></th>
+              </tr>
+                {%  for answer in show_answers %}
+                  <tr>
+                          <td>{{ answer.quiz_set_id }}</td>
+                          <td>{{ answer.name }}</td>
+                          <td>{{ answer.score }}</td>
+                  </tr>
+               {% endfor %}
+          </table>
+          <br>
+          <br>
           </div>
           <div class="flexList">
-            <ul class="user_view">
-              <li><strong>Uploaded Quizzes:</strong></li>
-              <li>Sake (Edit)</li>
-            </ul>
-            <ul class="user_view">
-              <li><strong>Last Updated</strong></li>
-              <li>...</li>
-            </ul>
-            <ul class="user_view">
-              <li><strong>Number of attempts by other users</strong></li>
-              <li>...</li>
-            </ul>
+              <table border="0px">
+              <tr>
+                  <th><strong>Uploaded Quizzes Id</strong></th>
+                  <th><strong>Uploaded Quizzes Name</strong></th>
+                  <th><strong>Number of attempts</strong></th>
+              </tr>
+                {%  for quiz in show_quizs %}
+                  <tr>
+                          <td>{{ quiz.quiz_set_id }}</td>
+                          <td>{{ quiz.name }}</td>
+                          <td>{{ quiz.otherNumber }}</td>
+                  </tr>
+               {% endfor %}
+              </table>
           </div>
         </div>
       </div>

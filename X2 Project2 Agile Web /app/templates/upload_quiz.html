@@ -13,31 +13,39 @@
       <h2>Question Upload:</h2>
       <div>
         <form>
-          <!--<p>Quiz Set: <input type = 'text' placeholder="Please select a Quiz Set"></p> -->
+          {{ form.hidden_tag()}}
+
           <div style="text-align:left;">
-            <p class="#">Question1: <input type="text" class="wideInput question_first" /></p>
+            <p class="#">{{ form.quizSetId.label }}  {{ form.quizSetId }}</p>
+            <p class="#">{{ form.question.label }}  {{ form.question }}</p>
             <p style="margin-left:21rem">Correct Choice</p>
             <p class="#">
-              Choice A: <input style="width: 18rem;" type="text" />
-              <input class="checkbox" type="checkbox" />
+              {{ form.choiceA.label }} {{ form.choiceA }}
+              <input class="checkbox" type="radio" name="choice" value="A" />
             </p>
             <p class="#">
-              Choice B: <input style="width: 18rem;" type="text" />
-              <input style="text-align: right;" class="checkbox" type="checkbox" />
+               {{ form.choiceB.label }} {{ form.choiceB }}
+              <input style="text-align: right;" class="checkbox" type="checkbox" name="choice" value="B" />
             </p>
             <p class="#">
-              Choice C: <input style="width: 18rem;" type="text" />
-              <input class="checkbox" type="checkbox" />
+               {{ form.choiceC.label }} {{ form.choiceC }}
+              <input class="checkbox" type="checkbox" name="choice" value="C" />
             </p>
             <p class="#">
-              Choice D: <input style="width: 18rem;" type="text" />
-              <input class="checkbox" style="text-align: right;" type="checkbox" />
+              {{ form.choiceD.label }} {{ form.choiceD }}
+              <input class="checkbox" style="text-align: right;" type="checkbox" name="choice" value="D" />
+            </p>
+            <p class="#">
+                {{ form.submit (class="button2")}}
             </p>
           </div>
         </form>
-        <a href="/upload_quiz" style="margin-bottom: 2rem;">
-          <button class="button2" style="margin-bottom: 2rem; margin-left: 22.5rem">Next Question>>></button></a
-        >
+        <a href="/user_page">
+          <p><button class="button2">Back User Page<<<</button></p>
+        </a>
+        <a href="/upload_question_set">
+          <p><button class="button2">Create Question Set Page>>></button></p>
+        </a>
       </div>
     </div>
     {% endblock %}
