@@ -21,42 +21,33 @@
           <li class="nav_list2">
             <a href="/manage_user"><button>Manage Users</button> </a>
           </li>
-          <li class="nav_list2_bottom"><a href="/admin_change_name"><button>Change Name</button></li>
             <li class="nav_list2"><a href="/admin_change_password"><button>Change Password</button></a></li>
           <li class="nav_list2"><button>Sign Out</button></li>
         </ul>
       </div>
       <div class="main_part">
-        <p class="search">Search: <input type="text" /></p>
-
-        <div class="flex_list">
-          <ul class="mian_ul">
-            <li><strong>Display Name</strong></li>
-            <li>Han Chooi</li>
-            <li>...</li>
-          </ul>
-          <ul class="mian_ul">
-            <li><strong>User ID</strong></li>
-            <li>123123</li>
-            <li>...</li>
-          </ul>
-          <ul class="mian_ul">
-            <li><strong>Status</strong></li>
-            <li>Approved</li>
-            <li>Pending</li>
-          </ul>
-          <ul class="mian_ul">
-            <li><strong>Last Login</strong></li>
-            <li>12/02/2020</li>
-            <li>...</li>
-          </ul>
-          <ul class="mian_ul">
-            <li><strong>Delete/Approve</strong></li>
-            <li><button>Manage</button></li>
-            <li><button>Manage</button></li>
-          </ul>
-        </div>
+          <h1 align="center">welcome Admin</h1>>
+          <p class="search">Search: <input type="text" /></p>
+          <div class="flex_list">
+          <table border="5px">
+              <tr>
+                  <th><strong>Display Name</strong></th>
+                  <th><strong>User ID</strong></th>
+                  <th><strong>Status</strong></th>
+                  <th><strong>Last Login</strong></th>
+                  <th><strong>Delete</strong></th>
+              </tr>
+               {% for user in users %}
+                  <tr>
+                          <td>{{ user.name }}</td>
+                          <td>{{ user.id }}</td>
+                          <td>{{ user.status }}</td>
+                          <td>{{ user.last_login }}</td>
+                          <td><a href='/update?id='{{ user.id }}>submit</a></td>
+                  </tr>
+               {% endfor %}
+          </table>
+          </div>
       </div>
     </div>
-
-    {% endblock %}
+    {% endblock content %}

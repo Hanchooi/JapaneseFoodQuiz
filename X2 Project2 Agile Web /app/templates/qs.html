@@ -5,9 +5,9 @@
     <link href="/static/style.css" rel="stylesheet" />
     <link href="/static/qs.css" rel="stylesheet" />
 
-{% extends 'base.html' %}
+  {% extends 'base.html' %}
 
-{% block content %}
+  {% block content %}
 
         <!-- Masthead-->
         <header
@@ -17,52 +17,31 @@
         </header>
 
         <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
+        <td class="page-section portfolio" id="portfolio">
+            {% for quizSet in quizSets %}
             <p>
                 <table class="tbCss" align="center">
                     <tr>
-                        <td style="width:240px; height:120px; text-align:center">PICTURE</td>
-                        <td style="width:240px; height:120px; text-align:center">PICTURE</td>
+                        <th style="width:240px; height:120px; text-align:center">Picture</th>
+                        <th style="width:240px; height:120px; text-align:center">Name</th>
+                        <th style="width:240px; height:120px; text-align:center">Description</th>
+                         <th style="width:240px; height:120px; text-align:center">Answer</th>
                     </tr>
                     <tr>
+                        <td> <p> <img src="data:;base64,{{ base64.b64encode(quizSet.picture) }}"/></p></td>
                         <td style="width:240px; height:120px; text-align:left; vertical-align:top">
-                            <u>General Japanese Food Quizzes</u>
-                            <br /><br />
-                            (Descriptions)
-                            <input id="btnAtt01" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='qa.htm';" />
+                            <u>{{ quizSet.name }}</u>
                         </td>
-                        <td style="width:240px; height:120px; text-align:left; vertical-align:top">
-                            <u>Sushi</u>
-                            <br /><br />
-                            (Descriptions)
-                            <input id="btnAtt02" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='qa.htm';" />
+                        <td>
+                            {{ quizSet.description }}
                         </td>
-                    </tr>
-                </table>
-                
-                <br />
-
-                <table class="tbCss" align="center">
-                    <tr>
-                        <td style="width:240px; height:120px; text-align:center">PICTURE</td>
-                        <td style="width:240px; height:120px; text-align:center">PICTURE</td>
-                    </tr>
-                    <tr>
-                        <td style="width:240px; height:120px; text-align:left; vertical-align:top">
-                            <u>Sashimi</u>
-                            <br /><br />
-                            (Descriptions)
-                            <input id="btnAtt03" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='qa.htm';" />
-                        </td>
-                        <td style="width:240px; height:120px; text-align:left; vertical-align:top">
-                            <u>Sake</u>
-                            <br /><br />
-                            (Descriptions)
-                            <input id="btnAtt04" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='qa.htm';" />
+                        <td>
+                            <input id="btnAtt01" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='/qa?id='+{{ quizSet.id }};" />
                         </td>
                     </tr>
                 </table>
             </p>
+            {% endfor %}
         </section>
 
         <!-- About Section-->
@@ -77,4 +56,4 @@
               </div>
         </section>
 
-{% endblock %}
+  {% endblock %}

@@ -15,176 +15,58 @@
         style="padding-top: calc(1rem + 25px);"
         >
         </header>
-        <!-- Portfolio Section-->
-        <section class="page-section portfolio" id="portfolio">
-            <p style="text-align:center;">
-                <table class="tbCss" align="center">
+
+            {% if question %}
+                 <p style="text-align:center;">
+                 <table class="tbCss" align="center">
                     <tr>
                         <td style="width:480px; height:120px; text-align:center">PICTURE</td>
                     </tr>
                     <tr>
                         <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                            QUESTION 1:
+                           {{ question.question }}
                             <br />...
                             <br />...
                             <br />
                             <br />
                             ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A. {{ question.choiceA }}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.{{ question.choiceB }}
                             <br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.
+                                {% if question.choiceC %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.{{ question.choiceC }}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.{{ question.choiceC }}
+                                 {% endif %}
                         </td>
+                    </tr>
+                     <tr>
+                         {{ form.answer.label }}  {{ form.answer.label }}
+                    </tr>
+                    <tr>
+                         <p class="#">
+                            {{ form.submit (class="button2")}}
+                         </p>
                     </tr>
                 </table>
             </p>
-
-            <p style="text-align:center;">
-                <table class="tbCss" align="center">
+            {% endif %}
+            <table class="tbSbmtCss" align="center">
                     <tr>
-                        <td style="width:480px; height:120px; text-align:center">PICTURE</td>
+                        {% if question %}
+                        <a href="/qa?id={{ quizSetId }}&index={{ index - 1 }}">pre</a>>
+                        <a href="/qa?id={{ quizSetId }}&index={{ index + 1 }}">next</a>>
+                        {% else %}
+                        <a href="/user_page">
+                            <p><button class="button2">Back User Page>>></button></p>
+                        </a>
+                        {% endif %}
                     </tr>
-                    <tr>
-                        <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                            QUESTION 2:
-                            <br />...
-                            <br />...
-                            <br />
-                            <br />
-                            ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.
-                            <br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.
-                        </td>
-                    </tr>
-                </table>
-            </p>
-
-            <p style="text-align:center;">
-                <table class="tbCss" align="center">
-                    <tr>
-                        <td style="width:480px; height:120px; text-align:center">PICTURE</td>
-                    </tr>
-                    <tr>
-                        <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                            QUESTION 3:
-                            <br />...
-                            <br />...
-                            <br />
-                            <br />
-                            ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.
-                            <br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.
-                        </td>
-                    </tr>
-                </table>
-            </p>
-
-            <p style="text-align:center;">
-                <table class="tbCss" align="center">
-                    <tr>
-                        <td style="width:480px; height:120px; text-align:center">PICTURE</td>
-                    </tr>
-                    <tr>
-                        <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                            QUESTION 4:
-                            <br />...
-                            <br />...
-                            <br />
-                            <br />
-                            ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.
-                            <br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.
-                        </td>
-                    </tr>
-                </table>
-            </p>
-
-            <p style="text-align:center;">
-                <table class="tbCss" align="center">
-                    <tr>
-                        <td style="width:480px; height:120px; text-align:center">PICTURE</td>
-                    </tr>
-                    <tr>
-                        <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                            QUESTION 5:
-                            <br />...
-                            <br />...
-                            <br />
-                            <br />
-                            ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.
-                            <br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.
-                        </td>
-                    </tr>
-                </table>
-
-                <table class="tbSbmtCss" align="center">
-                    <tr>
-                        <td style="width:240px; text-align:left"><input id="btnPrev" type="button" value="<<< Previous" /></td>
-                        <td style="width:240px; text-align:right"><input id="btnNext" type="button" value="Next >>>" /></td>
-                    </tr>
-                    <tr>
-                        <td style="width:240px; text-align:left">&nbsp;</td>
-                        <td style="width:240px; text-align:right"><br /><input id="btnSbmt" type="button" value="Submit Answers" /></td>
-                    </tr>
-                </table>
-            </p>
-
-        </section>
-
-        <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about" style="padding-top: 1rem; padding-bottom: 2rem;">
-            <div class="container">
-                <!-- Browse Questions -->
-                <div class="text-center">
-                <a class="btn btn-xl btn-outline-light" href="/qs">
-                    <i class="mr-2"></i>ATTEMPT OTHER QUIZZES
-                </a>
-                </div>
-            </div>
-        </section>
+           </table>
 
 {% endblock %}
