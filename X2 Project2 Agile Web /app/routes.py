@@ -18,7 +18,7 @@ def index():
 
 @app.route('/qs')
 def qs():
-    quizSets = QuizSet.query.filter_by(status="running").all()
+    quizSets = QuizSet.query.filter_by(status="approve").all()
     for quizSet in quizSets:
         quizSet.href = "/qa?index=0&id="+str(quizSet.quizSetID)
         quizSet.picture = "/static/images/"+quizSet.picture
@@ -67,9 +67,6 @@ def qa():
                         record = str(question.questionID)
                     else:
                         record.append(str(question.questionID))
-            else:
-                if str(question.questionID) in record:
-                    record.remove(str(question.questionID))
             answer.totalNumber = total_count
             if len(record) > 0:
                 answer.correctNumber = ",".join(record)
@@ -79,9 +76,13 @@ def qa():
     return render_template('qa.html', form=form, question=question, index=index, quizSetId=quizSetId, picture=picture, next = next)
 
 
-@login_required
+
 @app.route('/manage_quiz')
+@login_required
 def manage_quiz():
+    user = current_user
+    if user.name != 'admin':
+        return redirect('/admin')
     quizSets = QuizSet.query.all()
     for quizSet in quizSets:
         if quizSet.status == "running":
@@ -90,15 +91,19 @@ def manage_quiz():
 
 
 @app.route('/delete_quiz_set')
+@login_required
 def delete_quiz_set():
     user = current_user
     if user.name == 'admin':
         quizSetId = request.args.get('id')
         if quizSetId is not None:
-            quizSet = QuizSet.query.filter_by(quizSetID=quizSetId).first()
-            quizSet.set_status("finish")
+            quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId)).first()
+            if quizSet.status == "pending":
+                quizSet.set_status("approve")
+            else:
+                quizSet.set_status("finish")
             db.session.commit()
-    return redirect('/manage_user')
+    return redirect('/manage_quiz')
 
 
 @app.route('/update')
@@ -133,12 +138,14 @@ def upload_quiz():
     return render_template('upload_quiz.html', form=form)
 
 
-@login_required
+
 @app.route('/manage_user')
+@login_required
 def manage_user():
+    user = current_user
+    if user.name != 'admin':
+        return redirect('/admin')
     users = User.query.filter(User.name!="admin")
-    for user in users:
-        user.href = "/update?id="+str(user.id)
     return render_template('manage_user.html', users=users)
 
 
@@ -157,7 +164,7 @@ def upload_question_set():
             quizSet = QuizSet(name=form.quizName.data, description=form.quizDescription.data, picture=file.filename, userID=user.id)
             db.session.add(quizSet)
             db.session.commit()
-            flash("sucess")
+            flash("sucess, quiz set id:" + str(quizSet.quizSetID))
             return redirect('/user_page')
     return render_template('upload_question_set.html', form=form)
 
@@ -166,12 +173,11 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-
-@login_required
 @app.route('/user_page')
+@login_required
 def user_page():
     user = current_user
-    answers = Answer.query.filter_by(userID=user.id).all()
+    answers = Answer.query.filter_by(userID=int(user.id)).all()
     show_answers = []
     if answers and len(answers) > 0:
         for answer in answers:
@@ -223,7 +229,10 @@ def user_login():
             flash("Invalid userID or password")
             return redirect(url_for('user_login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect('/user_page')
+        if user.name == 'admin':
+            return redirect('/manage_user')
+        else:
+            return redirect('/user_page')
 
     return render_template('user_login.html', form=form)
 
@@ -241,8 +250,9 @@ def user_signUp():
     return render_template('user_register.html', title='Register', form=form)
 
 
-@login_required
+
 @app.route('/user_change_password', methods=['GET', 'POST'])
+@login_required
 def user_change_password():
 
     form = PasswordForm()
@@ -255,8 +265,9 @@ def user_change_password():
     return render_template('change_password.html', form=form)
 
 
-@login_required
+
 @app.route('/admin_change_password', methods=['GET', 'POST'])
+@login_required
 def admin_change_password():
 
     form = PasswordForm()
@@ -269,8 +280,9 @@ def admin_change_password():
     return render_template('change_password.html', form=form)
 
 
-@login_required
+
 @app.route('/user_change_name', methods=['GET', 'POST'])
+@login_required
 def user_change_name():
 
     form = NameForm()

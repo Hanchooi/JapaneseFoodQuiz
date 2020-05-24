@@ -29,13 +29,17 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def get_id(self):
+        return self.id
+
     # Printing out which user is current
     def __repr__(self):
         return '<UserId {0}, email {1}, name {2}> last_login {3}'.format(self.id, self.email, self.name, self.last_login)
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    user = User.query.filter_by(id=(int(id))).first()
+    return user
 
 
 class QuizSet(db.Model):
@@ -51,7 +55,7 @@ class QuizSet(db.Model):
         self.name = name
         self.description = description
         self.picture = picture
-        self.status = "running"
+        self.status = "pending"
         self.userID = userID
 
     def set_status(self, status):

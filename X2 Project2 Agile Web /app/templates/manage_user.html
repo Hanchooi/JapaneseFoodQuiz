@@ -42,7 +42,7 @@
                           <td>{{ user.id }}</td>
                           <td>{{ user.status }}</td>
                           <td>{{ user.last_login }}</td>
-                          <td><a href="{{ user.href }}">Delete</a></td>
+                          <td><a href="/update?id={{ user.id }}">Delete</a></td>
                   </tr>
                {% endfor %}
           </table>

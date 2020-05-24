@@ -33,14 +33,14 @@
                   <th><strong>Quiz Set ID</strong></th>
                   <th><strong>Name</strong></th>
                   <th><strong>Status</strong></th>
-                  <th><strong>Delete</strong></th>
+                  <th><strong>Delete/Approve</strong></th>
               </tr>
                {% for quizSet in quizSets %}
                   <tr>
                           <td>{{ quizSet.quizSetID }}</td>
                           <td>{{ quizSet.name }}</td>
                           <td>{{ quizSet.status }}</td>
-                          <td style="text-align: center;" ><a href="{{ quizSet.href }}">Delete</a></td>
+                          <td style="text-align: center;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">submit</a></td>
                   </tr>
                {% endfor %}
        </table>
