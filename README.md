@@ -13,14 +13,25 @@ python, pip, flask, wtf form and e.t.c.
 The command required to install the neccessary packages are as follow
 
 python -m pip install --upgrade pip
+
 pip3 install flask
+
 pip3 install wheel
+
 pip3 install wtf
+
 pip3 install flask_wtf
+
 pip3 install flask-login
+
 pip3 install email_authentication
+
 pip3 install sqlalchemy
+
 pip3 install flask-sqlalchemy
+
 pip3 install flask-migrate
+
 pip3 install email_validator
+
 pip3 install python-dotenv
