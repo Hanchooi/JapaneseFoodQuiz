@@ -9,18 +9,31 @@
 
     <div class="top">
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <div class="box">
       <form action="" method="post">
         {{ form.hidden_tag()}}
         <p class="#">
           {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
           in form.userID.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
         <p class="#">
           {{ form.password.label }} {{ form.password(size = 32)}} {% for error
           in form.password.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>

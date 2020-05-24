@@ -15,12 +15,23 @@
         style="padding-top: calc(1rem + 25px);"
         >
         </header>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
             {% if question %}
+
                  <p style="text-align:center;">
                  <table class="tbCss" align="center">
                     <tr>
-                        <td style="width:480px; height:120px; text-align:center">PICTURE</td>
+                        <td style="width:480px; height:120px; text-align:center"> <img src="{{ picture }}" width="400" height="400" alt="miss～～"/></td>
                     </tr>
                     <tr>
                         <td style="width:240px; height:240px; text-align:left; vertical-align:top">
@@ -45,27 +56,25 @@
                                  {% endif %}
                         </td>
                     </tr>
-                     <tr>
-                         {{ form.answer.label }}  {{ form.answer.label }}
-                    </tr>
-                    <tr>
-                         <p class="#">
-                            {{ form.submit (class="button2")}}
-                         </p>
-                    </tr>
-                </table>
-            </p>
+                  </table>
+                  </p>
+                  <div class="box" style="text-align:center">
+                      <form action="" method="post">
+                        {{ form.hidden_tag()}}
+                        <p class="#" style="text-align=ce">
+                          {{ form.answer.label }} {{ form.answer(size = 32)}}
+                        </p>
+                        <p class="#">
+                          {{ form.submit (class="button2")}}
+                        </p>
+                      </form>
+                </div>
             {% endif %}
-            <table class="tbSbmtCss" align="center">
+            <table class="tbSbmtCss">
                     <tr>
-                        {% if question %}
-                        <a href="/qa?id={{ quizSetId }}&index={{ index - 1 }}">pre</a>>
-                        <a href="/qa?id={{ quizSetId }}&index={{ index + 1 }}">next</a>>
-                        {% else %}
-                        <a href="/user_page">
-                            <p><button class="button2">Back User Page>>></button></p>
+                        <a href="{{ next }}" class="button2" style="text-align:center;">
+                            <p><button class="button2">Next>>></button></p>
                         </a>
-                        {% endif %}
                     </tr>
            </table>
 

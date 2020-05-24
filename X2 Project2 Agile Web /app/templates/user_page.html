@@ -17,23 +17,34 @@
               <a href="/user_page"><button>Results</button> </a>
             </li>
             <li class="nav_list2">
-              <a href="/qa"><button>Attempt A Quiz</button> </a>
+              <a href="/qs"><button>Attempt A Quiz </button></a>
             </li>
             <li class="nav_list2">
               <a href="/upload_question_set"
                 ><button>Upload Quizzes</button>
               </a>
             </li>
-            <li class="nav_list2_bottom"><a href="/user_change_name"><button>Change Name</button></li>
-            <li class="nav_list2"><a href="/user_change_password"></a><button>Change Password</button></li>
-            <li class="nav_list2"><a href="/logout"></a><button>Sign Out</button></li>
+            <li class="nav_list2">
+              <a href="/upload_quiz"
+                ><button>Upload Question</button>
+              </a>
+            </li>
+            <li class="nav_list2_bottom">
+                <a href="/user_change_name"><button>Change Name</button></a>
+            </li>
+            <li class="nav_list2">
+                <a href="/user_change_password"><button>Change Password</button></a>
+            </li>
+            <li class="nav_list2">
+                <a href="/logout"><button>Sign Out</button></a>
+            </li>
           </ul>
         </div>
         <div class="main_part">
-          <h1 align="center"> welcome {{ username }} !</h1>>
-          <div class="flexList">
-
-              <table border="0px">
+          <h1> Welcome {{ username }} !</h1>
+          <div style="margin-bottom: 5rem;"></div>
+          <div class="flexList container" style="margin-bottom: 5rem;">
+              <table class="table">
               <tr>
                   <th><strong>Attempted Quizzes Id</strong></th>
                   <th><strong>Attempted Quizzes Name</strong></th>
@@ -50,8 +61,8 @@
           <br>
           <br>
           </div>
-          <div class="flexList">
-              <table border="0px">
+          <div class="flexList container">
+              <table class="table">
               <tr>
                   <th><strong>Uploaded Quizzes Id</strong></th>
                   <th><strong>Uploaded Quizzes Name</strong></th>

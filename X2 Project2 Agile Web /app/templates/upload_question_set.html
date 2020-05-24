@@ -15,15 +15,27 @@
     </div>
     <div class="main">
       <h2>Quiz Set Upload:</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
       <div>
         <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
             <p>  {{ form.quizName.label }} {{ form.quizName(size = 100)}}</p>
             <p> {{ form.quizDescription.label }} {{ form.quizDescription(size = 1000)}}</p>
-            <p> {{ form.picture }}</p>
+            <p> Upload Photo {{ form.picture }}  </p>
         <p class="#">
           {{ form.submit (class="button2")}}
         </p>
+        
         </form>
         <a href="/user_page">
           <p><button class="button2">Back User Page>>></button></p></a
