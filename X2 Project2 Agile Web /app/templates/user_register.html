@@ -15,30 +15,35 @@
         <p class="#">
           {{ form.username.label }} {{ form.username(size = 32)}} {% for error
           in form.username.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
         <p class="#">
           {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
           in form.userID.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
         <p class="#">
             {{ form.email.label }}{{ form.email(size=64) }}
             {% for error in form.email.errors %}
+            <br>
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p class="#">
           {{ form.password.label }} {{ form.password(size = 32)}} {% for error
           in form.password.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
         <p class="#">
           {{ form.retypePassword.label }} {{ form.retypePassword(size = 32)}}
             {% for error in form.retypePassword.errors %}
+          <br>
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>

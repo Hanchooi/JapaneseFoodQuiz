@@ -71,14 +71,8 @@ class UploadQuizFrom(FlaskForm):
 
 
 class QuestionFrom(FlaskForm):
-    quizSets = QuizSet.query.all()
-    index = 1
-    choices = []
-    for quizSet in quizSets:
-        choices.append((index, quizSet.quizSetID))
-        index += 1
-    quizSetId = SelectField('quiz set id :', validators=[DataRequired('')],
-                            choices=choices, default=1)
+
+    quizSetId = StringField('quiz set id :', validators=[DataRequired('')])
     question = StringField('Question :', validators=[DataRequired()])
     choiceA = StringField('choice A :', validators=[DataRequired()])
     choiceB = StringField('choice B :', validators=[DataRequired()])
