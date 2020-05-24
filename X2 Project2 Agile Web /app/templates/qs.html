@@ -22,21 +22,20 @@
             <p>
                 <table class="tbCss" align="center">
                     <tr>
-                        <th style="width:240px; height:120px; text-align:center">Picture</th>
-                        <th style="width:240px; height:120px; text-align:center">Name</th>
-                        <th style="width:240px; height:120px; text-align:center">Description</th>
-                         <th style="width:240px; height:120px; text-align:center">Answer</th>
+                        <td>
+                            <p> <img src="{{ quizSet.picture }}" width="500rem" alt="miss～～"/></p>
+                        </td>                  
                     </tr>
                     <tr>
-                        <td> <p> <img src="data:;base64,{{ base64.b64encode(quizSet.picture) }}"/></p></td>
-                        <td style="width:240px; height:120px; text-align:left; vertical-align:top">
+                        <td>
                             <u>{{ quizSet.name }}</u>
+                            <br>
+                            {{ quizSet.description }}                            
                         </td>
+                    </tr>
+                    <tr>
                         <td>
-                            {{ quizSet.description }}
-                        </td>
-                        <td>
-                            <input id="btnAtt01" type="button" value="Attempt Quiz" style="margin-top:80px;margin-left:120px;" onclick="location.href='/qa?id='+{{ quizSet.id }};" />
+                            <a href="{{ quizSet.href }}"> Attempt Quiz </a>
                         </td>
                     </tr>
                 </table>
@@ -49,7 +48,7 @@
             <div class="container">
                 <!-- Browse Questions -->
                 <div class="text-center">
-                  <a class="btn btn-xl btn-outline-light" href="/qa">
+                  <a class="btn btn-xl btn-outline-light" href="/qs">
                     <i class="mr-2"></i>ATTEMPT RANDOM QUIZ !!
                   </a>
                 </div>

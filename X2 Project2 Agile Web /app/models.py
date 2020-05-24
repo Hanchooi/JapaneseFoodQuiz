@@ -43,7 +43,7 @@ class QuizSet(db.Model):
     quizSetID = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     description = db.Column(db.String(100))
-    picture = db.Column(db.LargeBinary(length=2048))
+    picture = db.Column(db.String(100))
     userID = db.Column(db.String)
     status = db.Column(db.String(100))
 
@@ -51,7 +51,7 @@ class QuizSet(db.Model):
         self.name = name
         self.description = description
         self.picture = picture
-        self.status = "init"
+        self.status = "running"
         self.userID = userID
 
     def set_status(self, status):
@@ -114,6 +114,24 @@ class Qsrelation(db.Model):
 
     def __repr__(self):
         return '<QsrelationID {0}>'.format(self.qurelationID)
+
+
+def init():
+    db.drop_all()
+    db.create_all()
+    admin = User('1111111', 'admin', 'admin@uwa.studemt.edu.au')
+    admin.set_password("admin")
+    admin.set_status("admin")
+
+    user1 = User('22993156', 'Jason', '22993156@uwa.studemt.edu.au')
+    user1.set_password("jason001")
+
+    user2 = User('22993546', 'Ben', '22993546@uwa.student.edu.au')
+    user2.set_password("bem001")
+
+    db.session.add_all([admin, user1, user2])
+    db.session.commit()
+    users = User.query.all()
 
 if __name__=="__main__":
     db.drop_all()
