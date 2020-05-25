@@ -42,20 +42,22 @@
                   <th><strong>Quiz Set ID</strong></th>
                   <th><strong>Name</strong></th>
                   <th><strong>Status</strong></th>
-                  <th><strong>Edit</strong></th>
-                  <th><strong>Delete/Approve</strong></th>
+                  <th><strong>View/Edit</strong></th>
+                  <th><strong>Approval</strong></th>
+                  <th><strong>Delete</strong></th>
               </tr>
                {% for quizSet in quizSets %}
                   <tr>
                           <td>{{ quizSet.quizSetID }}</td>
                           <td>{{ quizSet.name }}</td>
                           <td>{{ quizSet.status }}</td>
-                          <td><a class="button2" href="/edit_question_set?id={{ quizSet.quizSetID }}">Edit</a></td>
+                          <td><a class="button2 mr-1" href="/view_question_set?id={{ quizSet.quizSetID }}">View</a><a class="button2" href="/edit_question_set?id={{ quizSet.quizSetID }}">Edit</a></td>
                           {%  if quizSet.status== "approve" %}
-                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Delete</a></td>
+                          <td style="text-align: left;" ><a href="/approve_quiz_set?id={{ quizSet.quizSetID }}">Undo</a></td>
                           {% else %}
                           <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Approve</a></td>
                           {% endif %}
+                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Delete</a></td>
                   </tr>
                {% endfor %}
        </table>
@@ -74,9 +76,9 @@
                   <tr>
                           <td>{{ question.quizSetID }}</td>
                           <td>{{ question.questionID }}</td>
-                          <td>{{ question.question }}</td>
+                          <td style="width:24rem;">{{ question.question }}</td>
                           <td>{{ question.correctAnswer}} </td>
-                          <td><a class="button2" href="/edit_quiz?id={{ question.questionID }}&qsID={{ question.quizSetID }}">Edit</a>
+                          <td><a class="button2 mr-1" href="/view_quiz?id={{ question.questionID }}&qsID={{ question.quizSetID }}">View</a><a class="button2" href="/edit_quiz?id={{ question.questionID }}&qsID={{ question.quizSetID }}">Edit</a>
                           <td style="text-align: left;" ><a href="/delete_quiz?id={{ question.questionID }}">Delete</a></td>
                           </td>
                   </tr>

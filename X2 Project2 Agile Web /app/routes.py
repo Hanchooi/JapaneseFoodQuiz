@@ -118,6 +118,22 @@ def delete_quiz_set():
 	return redirect('/manage_quiz')
 
 
+@app.route('/approve_quiz_set')
+@login_required
+def approve_quiz_set():
+	user = current_user
+	if user.id == '1111111':
+		quizSetId = request.args.get('id')
+		if quizSetId is not None:
+			quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId)).first()
+			if quizSet.status == "pending":
+				quizSet.set_status("approve")
+			else:
+				quizSet.set_status("pending")
+			db.session.commit()
+	return redirect('/manage_quiz')
+
+
 @app.route('/delete_quiz')
 @login_required
 def delete_quiz():
@@ -127,9 +143,11 @@ def delete_quiz():
 		if id is not None:
 			question = Question.query.filter_by(questionID=int(id)).first()
 			db.session.delete(question)
-		else:
-			db.session.commit()
+		
+		db.session.commit()
 	return redirect('/manage_quiz')
+
+
 @app.route('/update')
 def update():
 	user = current_user
@@ -171,6 +189,34 @@ def edit_quiz():
 	if id is not None:
 		form.questionID.data = id
 		form.quizSetId.data = qsID
+	if form.validate_on_submit():
+		quizSetId = form.quizSetId.data
+		quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
+		if quizSet is None:
+			flash("quizSet not exist")
+		else:
+			choice = request.form.get('choice')
+			question = Question.query.filter_by(questionID=int(id)).first()
+			if question is not None:
+				question.quizSetID = int(form.quizSetId.data)
+				question.question = form.question.data
+				question.choiceA = form.choiceA.data
+				question.choiceB = form.choiceB.data
+				question.choiceC = form.choiceC.data
+				question.choiceD = form.choiceD.data
+				question.correctAnswer = choice
+				db.session.commit()
+				return redirect('/manage_quiz')
+	return render_template('edit_quiz.html', form=form, username=current_user.name)
+
+@app.route('/view_quiz', methods=['GET', 'POST'])
+def view_quiz():
+	form = EditQuestionForm()
+	id = request.args.get("id")
+	qsID = request.args.get("qsID")
+	if id is not None:
+		form.questionID.data = id
+		form.quizSetId.data = qsID
 		question = Question.query.filter_by(questionID=int(id)).first()
 		form.question.data = question.question
 		form.choiceA.data = question.choiceA 
@@ -196,8 +242,7 @@ def edit_quiz():
 				question.correctAnswer = choice
 				db.session.commit()
 				return redirect('/manage_quiz')
-	return render_template('edit_quiz.html', form=form, username=current_user.name)
-
+	return render_template('view_quiz.html', form=form, username=current_user.name)
 
 @app.route('/manage_user')
 @login_required
@@ -227,8 +272,8 @@ def upload_question_set():
 			return redirect('/upload_quiz?id=' + str(quizSet.quizSetID))
 	return render_template('upload_question_set.html', form=form, username=current_user.name)
 
-@app.route('/edit_question_set', methods=['GET', 'POST'])
-def edit_question_set():
+@app.route('/view_question_set', methods=['GET', 'POST'])
+def view_question_set():
 	form = EditQuizForm()
 	user = current_user
 	id = request.args.get("id")
@@ -237,6 +282,30 @@ def edit_question_set():
 		quizSet = QuizSet.query.filter_by(quizSetID=int(id)).first()
 		form.quizName.data = quizSet.name
 		form.quizDescription.data = quizSet.description
+	if form.validate_on_submit() and id is not None:
+		file = request.files['picture']
+		if not (file and allowed_file(file.filename)):
+			flash("Unacceptable format")
+		else:
+			basepath = os.path.dirname(__file__)
+			upload_path = os.path.join(basepath, 'static/images', secure_filename(file.filename))
+			file.save(upload_path)
+			quizSet = QuizSet.query.filter_by(quizSetID=int(id)).first()
+			if quizSet is not None:
+				quizSet.name = form.quizName.data
+				quizSet.description = form.quizDescription.data
+				quizSet.picture = file.filename
+				db.session.commit()
+				return redirect('/manage_quiz')
+	return render_template('view_question_set.html', form=form, username=current_user.name)
+
+@app.route('/edit_question_set', methods=['GET', 'POST'])
+def edit_question_set():
+	form = EditQuizForm()
+	user = current_user
+	id = request.args.get("id")
+	if id is not None:
+		form.quizSetId.data = id
 	if form.validate_on_submit() and id is not None:
 		file = request.files['picture']
 		if not (file and allowed_file(file.filename)):
@@ -263,7 +332,7 @@ def allowed_file(filename):
 def user_page():
 	user = current_user
 	if user.id == "1111111":
-		return redirect('/manage_user')
+		return redirect('/manage_quiz')
 	answers = Answer.query.filter_by(userID=int(user.id)).all()
 	show_answers = []
 	if answers and len(answers) > 0:
