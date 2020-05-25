@@ -9,6 +9,17 @@
 
     <div class="top">
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <div class="alert alert-success" style="text-align: center">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <strong>{{ message }}</strong></div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <div class="main">
       <h2>Question Upload:</h2>
       <div>
@@ -34,10 +45,6 @@
               {{ form.choiceD.label }} {{ form.choiceD }}
               <input class="checkbox" style="text-align: right;" type="radio" name="rchoice" value="D" />
             </p>
-            {% if error %}
-              <p class=error style="color: red"><strong>Error:</strong> {{ error }}
-            {% endif %}
-            
             <p class="#">
                 {{ form.submit (class="button2")}}
             </p>

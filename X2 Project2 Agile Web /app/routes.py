@@ -91,8 +91,6 @@ def manage_quiz():
 	quizSets = QuizSet.query.all()
 	for quizSet in quizSets:
 		quizSetIds.append(quizSet.quizSetID)
-		#if quizSet.status == "running":
-			#quizSet.href = "/delete_quiz_set?id="+ str(quizSet.quizSetID)
 	questions = Question.query.all()
 	show_questions = []
 	for question in questions:
@@ -109,11 +107,7 @@ def delete_quiz_set():
 		quizSetId = request.args.get('id')
 		if quizSetId is not None:
 			quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId)).first()
-			if quizSet.status == "pending":
-				quizSet.set_status("approve")
-			else:
-				db.session.delete(quizSet)
-
+			db.session.delete(quizSet)
 			db.session.commit()
 	return redirect('/manage_quiz')
 
@@ -164,25 +158,28 @@ def update():
 @app.route('/upload_quiz', methods=['GET', 'POST'])
 def upload_quiz():
 	form = QuestionFrom()
-	error = None
 	id = request.args.get("id")
+
 	if id is not None:
 		form.quizSetId.data = id
 		
 	if form.validate_on_submit():
 		vQAnswer = request.form.get('rchoice')
 		quizSetId = form.quizSetId.data
-		quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
+		quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId)).first()
 		if quizSet is None:
-			error = 'quizSet not exist.'
+			flash('quizSet not exist!')
 		elif vQAnswer is None:
-			error = 'Please select Correct Choice.'
+			flash('Please select Correct Choice for the question!')
 		else:
 			question = Question(int(form.quizSetId.data), form.question.data, form.choiceA.data,
 								form.choiceB.data, form.choiceC.data, form.choiceD.data, vQAnswer)
 			db.session.add(question)
 			db.session.commit()
-	return render_template('upload_quiz.html', form=form, username=current_user.name, error=error)
+			flash('Question add Successfully')
+			return redirect('/upload_quiz')
+		
+	return render_template('upload_quiz.html', form=form, username=current_user.name)
 
 
 @app.route('/edit_quiz', methods=['GET', 'POST'])
@@ -194,12 +191,15 @@ def edit_quiz():
 		form.questionID.data = id
 		form.quizSetId.data = qsID
 	if form.validate_on_submit():
+		vQAnswer = request.form.get('rchoice')
 		quizSetId = form.quizSetId.data
 		quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
 		if quizSet is None:
 			flash("quizSet not exist")
+		elif vQAnswer is None:
+			flash('Please select Correct Choice for the question!')	
 		else:
-			choice = request.form.get('choice')
+			choice = request.form.get('rchoice')
 			question = Question.query.filter_by(questionID=int(id)).first()
 			if question is not None:
 				question.quizSetID = int(form.quizSetId.data)
@@ -377,6 +377,8 @@ def admin_login():
 		return redirect('/manage_user')
 
 	return render_template('admin_login.html', form=form)
+
+
 @app.route('/user_login', methods=['GET', 'POST'])
 def user_login():
 	form = LoginForm()
@@ -414,6 +416,7 @@ def user_signUp():
 def user_change_password():
 
 	form = PasswordForm()
+	form.userID.data = current_user.id
 	if form.validate_on_submit():
 		user = current_user
 		user.set_password(form.newPassword.data)
@@ -429,9 +432,10 @@ def user_change_password():
 def admin_change_password():
 
 	form = PasswordForm()
+	form.userID.data = current_user.id
 	if form.validate_on_submit():
 		user = current_user
-		user.set_password(form.password.data)
+		user.set_password(form.newPassword.data)
 		db.session.commit()
 		return redirect('/manage_quiz')
 
@@ -444,6 +448,7 @@ def admin_change_password():
 def user_change_name():
 
 	form = NameForm()
+	form.userID.data = current_user.id
 	if form.validate_on_submit():
 		user = current_user
 		user.name = form.newDisplayName.data
