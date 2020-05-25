@@ -32,3 +32,10 @@ button:hover {
   width: 16.875rem;
   height: 21.875rem;
 }
+
+.highlight_result {
+  color:black;    
+  text-shadow: 1px 0 #888888;
+  letter-spacing:1px;
+  font-weight:bold;
+}

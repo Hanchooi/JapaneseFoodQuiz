@@ -88,6 +88,8 @@ class EditQuestionForm(FlaskForm):
     choiceC = StringField('choice C :')
     choiceD = StringField('choice D :')
     submit = SubmitField('Edit Question')
+
+    
 class AnswerForm(FlaskForm):
     submit = SubmitField('Next')
 

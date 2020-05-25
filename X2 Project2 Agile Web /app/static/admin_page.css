@@ -47,3 +47,17 @@ li {
   padding-left: 3.125rem;
   padding-bottom: 0.625rem;
 }
+
+.highlight_m_user {
+  color:black;    
+  text-shadow: 1px 0 #888888;
+  letter-spacing:1px;
+  font-weight:bold;
+}
+
+.highlight_m_quiz {
+  color:black;    
+  text-shadow: 1px 0 #888888;
+  letter-spacing:1px;
+  font-weight:bold;
+}
