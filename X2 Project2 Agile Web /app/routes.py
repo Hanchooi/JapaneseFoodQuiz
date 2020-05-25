@@ -114,6 +114,7 @@ def delete_quiz_set():
                 quizSet.set_status("approve")
             else:
                 db.session.delete(quizSet)
+
             db.session.commit()
     return redirect('/manage_quiz')
 
@@ -150,12 +151,13 @@ def upload_quiz():
             db.session.commit()
     return render_template('upload_quiz.html', form=form)
 
+
 @app.route('/edit_quiz', methods=['GET', 'POST'])
 def edit_quiz():
     form = EditQuestionForm()
     id = request.args.get("id")
     if id is not None:
-        form.quizSetId.data = id
+        form.questionID.data = id
     if form.validate_on_submit():
         quizSetId = form.quizSetId.data
         quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
@@ -163,10 +165,17 @@ def edit_quiz():
             flash("quizSet not exist")
         else:
             choice = request.form.get('choice')
-            question = Question(int(form.quizSetId.data), form.question.data, form.choiceA.data,
-                                form.choiceB.data, form.choiceC.data, form.choiceD.data, choice)
-            db.session.add(question)
-            db.session.commit()
+            question = Question.query.filter_by(questionID=int(id)).first()
+            if question is not None:
+                question.quizSetID = int(form.quizSetId.data)
+                question.question = form.question.data
+                question.choiceA = form.choiceA.data
+                question.choiceB = form.choiceB.data
+                question.choiceC = form.choiceC.data
+                question.choiceD = form.choiceD.data
+                question.correctAnswer = choice
+                db.session.commit()
+                return redirect('/manage_quiz')
     return render_template('edit_quiz.html', form=form)
 
 
@@ -202,7 +211,10 @@ def upload_question_set():
 def edit_question_set():
     form = EditQuizForm()
     user = current_user
-    if form.validate_on_submit():
+    id = request.args.get("id")
+    if id is not None:
+        form.quizSetId.data = id
+    if form.validate_on_submit() and id is not None:
         file = request.files['picture']
         if not (file and allowed_file(file.filename)):
             flash("Unacceptable format")
@@ -210,10 +222,13 @@ def edit_question_set():
             basepath = os.path.dirname(__file__)
             upload_path = os.path.join(basepath, 'static/images', secure_filename(file.filename))
             file.save(upload_path)
-            quizSet = QuizSet(name=form.quizName.data, description=form.quizDescription.data, picture=file.filename, userID=user.id)
-            db.session.add(quizSet)
-            db.session.commit()
-            return redirect('/upload_quiz?id=' + str(quizSet.quizSetID))
+            quizSet = QuizSet.query.filter_by(quizSetID=int(id)).first()
+            if quizSet is not None:
+                quizSet.name = form.quizName.data
+                quizSet.description = form.quizDescription.data
+                quizSet.picture = file.filename
+                db.session.commit()
+                return redirect('/manage_quiz')
     return render_template('edit_question_set.html', form=form)
 
 def allowed_file(filename):

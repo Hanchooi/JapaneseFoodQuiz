@@ -49,7 +49,7 @@
                           {% else %}
                           <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Approve</a></td>
                           {% endif %}
-                          <td><a class="button2" href="/edit_question_set">Edit</a>
+                          <td><a class="button2" href="/edit_question_set?id={{ quizSet.quizSetID }}">Edit</a>
                           </td>
                   </tr>
                {% endfor %}
@@ -70,7 +70,7 @@
                           <td>{{ question.questionID }}</td>
                           <td>{{ question.question }}</td>
                           <td>{{ question.correctAnswer}} </td>
-                          <td><a class="button2" href="/edit_quiz">Edit</a>
+                          <td><a class="button2" href="/edit_quiz?id={{ question.questionID }}">Edit</a>
                           </td>
                   </tr>
                {% endfor %}

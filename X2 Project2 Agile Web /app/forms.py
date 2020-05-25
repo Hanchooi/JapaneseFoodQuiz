@@ -1,19 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField, SelectField,IntegerField
 from wtforms.validators import DataRequired
 from app.models import User, QuizSet
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 
 class LoginForm(FlaskForm):
 
-    userID = StringField('User ID:', validators=[DataRequired()])
+    userID = IntegerField('User ID:', validators=[DataRequired('Integer Input Required')])
     password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
 class SignUpForm(FlaskForm):
     
-    userID = StringField('User ID:', validators=[DataRequired()])
+    userID = IntegerField('User ID:', validators=[DataRequired('Integer Input Required')])
     displayName = StringField('Display Name:', validators=[DataRequired()])
     password = PasswordField('Password:', validators=[DataRequired()])
     retypePassword = PasswordField('Retype Password:', validators=[DataRequired()])
@@ -22,7 +22,7 @@ class SignUpForm(FlaskForm):
 
 class AdminForm(FlaskForm):
 
-    userID = StringField('Admin ID:', validators=[DataRequired()])
+    userID = IntegerField('Admin ID:', validators=[DataRequired('Integer Input Required')])
     password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
@@ -31,7 +31,7 @@ class AdminForm(FlaskForm):
 
 class PasswordForm(FlaskForm):
     
-    userID = StringField('ID:', validators=[DataRequired()])
+    userID = IntegerField('ID:', validators=[DataRequired('Integer Input Required')])
     oldPassword = PasswordField('Old Password:', validators=[DataRequired()])
     newPassword = PasswordField('New Password:', validators=[DataRequired()])
     retypePassword = PasswordField('Retype Password:', validators=[DataRequired(), EqualTo('newPassword')])
@@ -40,12 +40,12 @@ class PasswordForm(FlaskForm):
 
 
 class NameForm(FlaskForm):
-    userID = StringField('ID:', validators=[DataRequired()])    
+    userID = IntegerField('ID:', validators=[DataRequired('Integer Input Required')])    
     newDisplayName = StringField('New Display Name:', validators=[DataRequired()])
     submit = SubmitField('Change Name')
 
 class RegistrationForm(FlaskForm):
-    userID = StringField('UserID', validators=[DataRequired()])
+    userID = IntegerField('UserID', validators=[DataRequired('Integer Input Required')])
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -70,7 +70,7 @@ class UploadQuizFrom(FlaskForm):
     submit = SubmitField('upload')
 
 class EditQuizForm(FlaskForm):
-    quizSetId = StringField('Quiz Set ID', validators=[DataRequired()])
+    quizSetId = IntegerField('Quiz Set ID', validators=[DataRequired('Integer Input Required')])
     quizName = StringField('Quiz Name', validators=[DataRequired()])
     quizDescription = StringField('Quiz Description ', validators=[DataRequired()])
     picture = FileField('select picture',  validators=[DataRequired()])
@@ -78,7 +78,7 @@ class EditQuizForm(FlaskForm):
 
 class QuestionFrom(FlaskForm):
 
-    quizSetId = StringField('quiz set id :', validators=[DataRequired('')])
+    quizSetId = IntegerField('quiz set id :', validators=[DataRequired('Integer Input Required')])
     question = StringField('Question :', validators=[DataRequired()])
     choiceA = StringField('choice A :', validators=[DataRequired()])
     choiceB = StringField('choice B :', validators=[DataRequired()])
@@ -88,7 +88,7 @@ class QuestionFrom(FlaskForm):
 
 class EditQuestionForm(FlaskForm):
     
-    quizSetId = StringField('Quiz Set id :', validators=[DataRequired('')])
+    quizSetId = IntegerField('Quiz Set id :', validators=[DataRequired('Integer Input Required')])
     questionID = StringField('Question ID :', validators=[DataRequired()])
     question = StringField('Question :', validators=[DataRequired()])
     choiceA = StringField('choice A :', validators=[DataRequired()])
