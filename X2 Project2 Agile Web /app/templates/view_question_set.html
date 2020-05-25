@@ -8,12 +8,13 @@
       href="static/upload_question_set2.css"
     />
     <link href="/static/style.css" rel="stylesheet" />
-
+    <!-- extend for header and footer-->
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
     </div>
     <div class="main">
+         <!-- edit quiz operation -->
       <h2>Quiz Set Edit:</h2>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -27,6 +28,7 @@
         {% endif %}
     {% endwith %}
       <div>
+           <!-- update content -->
         <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
             <p>  {{ form.quizSetId.label }} {{ form.quizSetId(size = 100)}}</p>
