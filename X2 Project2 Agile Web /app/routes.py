@@ -164,21 +164,25 @@ def update():
 @app.route('/upload_quiz', methods=['GET', 'POST'])
 def upload_quiz():
 	form = QuestionFrom()
+	error = None
 	id = request.args.get("id")
 	if id is not None:
 		form.quizSetId.data = id
+		
 	if form.validate_on_submit():
+		vQAnswer = request.form.get('rchoice')
 		quizSetId = form.quizSetId.data
 		quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
 		if quizSet is None:
-			flash("quizSet not exist")
+			error = 'quizSet not exist.'
+		elif vQAnswer is None:
+			error = 'Please select Correct Choice.'
 		else:
-			choice = request.form.get('choice')
 			question = Question(int(form.quizSetId.data), form.question.data, form.choiceA.data,
-								form.choiceB.data, form.choiceC.data, form.choiceD.data, choice)
+								form.choiceB.data, form.choiceC.data, form.choiceD.data, vQAnswer)
 			db.session.add(question)
 			db.session.commit()
-	return render_template('upload_quiz.html', form=form, username=current_user.name)
+	return render_template('upload_quiz.html', form=form, username=current_user.name, error=error)
 
 
 @app.route('/edit_quiz', methods=['GET', 'POST'])
