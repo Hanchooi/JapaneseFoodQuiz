@@ -70,7 +70,7 @@
                           <td>{{ question.questionID }}</td>
                           <td>{{ question.question }}</td>
                           <td>{{ question.correctAnswer}} </td>
-                          <td><a class="button2" href="/edit_quiz?id={{ question.questionID }}">Edit</a>
+                          <td><a class="button2" href="/edit_quiz?id={{ question.questionID }}&qsID={{ question.quizSetID }}">Edit</a>
                           </td>
                   </tr>
                {% endfor %}

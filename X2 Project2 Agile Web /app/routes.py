@@ -156,8 +156,17 @@ def upload_quiz():
 def edit_quiz():
     form = EditQuestionForm()
     id = request.args.get("id")
+    qsID = request.args.get("qsID")
     if id is not None:
         form.questionID.data = id
+        form.quizSetId.data = qsID
+        question = Question.query.filter_by(questionID=int(id)).first()
+        form.question.data = question.question
+        form.choiceA.data = question.choiceA 
+        form.choiceB.data = question.choiceB
+        form.choiceC.data = question.choiceC 
+        form.choiceD.data = question.choiceD
+        choice = question.correctAnswer
     if form.validate_on_submit():
         quizSetId = form.quizSetId.data
         quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
@@ -214,6 +223,9 @@ def edit_question_set():
     id = request.args.get("id")
     if id is not None:
         form.quizSetId.data = id
+        quizSet = QuizSet.query.filter_by(quizSetID=int(id)).first()
+        form.quizName.data = quizSet.name
+        form.quizDescription.data = quizSet.description
     if form.validate_on_submit() and id is not None:
         file = request.files['picture']
         if not (file and allowed_file(file.filename)):

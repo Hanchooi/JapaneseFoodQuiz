@@ -70,7 +70,7 @@ class EditQuizForm(FlaskForm):
 
 class QuestionFrom(FlaskForm):
 
-    quizSetId = IntegerField('quiz set id :', validators=[DataRequired('Integer Input Required')])
+    quizSetId = IntegerField('Quiz Set ID :', validators=[DataRequired('Integer Input Required')])
     question = StringField('Question :', validators=[DataRequired()])
     choiceA = StringField('choice A :', validators=[DataRequired()])
     choiceB = StringField('choice B :', validators=[DataRequired()])
@@ -80,7 +80,7 @@ class QuestionFrom(FlaskForm):
 
 class EditQuestionForm(FlaskForm):
     
-    quizSetId = IntegerField('Quiz Set id :', validators=[DataRequired('Integer Input Required')])
+    quizSetId = IntegerField('Quiz Set ID :', validators=[DataRequired('Integer Input Required')])
     questionID = StringField('Question ID :', validators=[DataRequired()])
     question = StringField('Question :', validators=[DataRequired()])
     choiceA = StringField('choice A :', validators=[DataRequired()])
