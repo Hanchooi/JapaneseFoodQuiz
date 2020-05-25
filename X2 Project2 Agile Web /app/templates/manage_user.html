@@ -35,7 +35,6 @@
               <tr>
                   <th><strong>Display Name</strong></th>
                   <th><strong>User ID</strong></th>
-                  <th><strong>Status</strong></th>
                   <th><strong>Last Login</strong></th>
                   <th><strong>Delete</strong></th>
               </tr>
@@ -43,7 +42,6 @@
                   <tr>
                           <td>{{ user.name }}</td>
                           <td>{{ user.id }}</td>
-                          <td>{{ user.status }}</td>
                           <td>{{ user.last_login }}</td>
                           <td><a href="/update?id={{ user.id }}">Delete</a></td>
                   </tr>
