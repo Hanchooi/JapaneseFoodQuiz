@@ -4,11 +4,12 @@
     <link href="/static/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/admin_page.css" />
-
+    <!-- extend for header and footer-->
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
     </div>
+    <!-- left nav bar -->
     <div class="main">
       <div class="navbar2">
         <ul class="nav_ul2">
@@ -33,6 +34,7 @@
           <li class="nav_list2"><a href="/logout"><button>Log Out</button></a></li>
         </ul>
       </div>
+      <!-- user operation -->
       <div class="main_part">
           <p class="search">Search: <input type="text" /></p>
           <div class="flex_list container">

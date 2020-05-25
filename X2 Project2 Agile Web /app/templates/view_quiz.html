@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/upload_quiz.css" />
     <link href="/static/style.css" rel="stylesheet" />
-
+    <!-- extend for header and footer-->
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
@@ -14,11 +14,13 @@
       <div>
         <form action="" method="post">
           {{ form.hidden_tag()}}
+             <!-- show info about quizs -->
           <div style="text-align:left;">
             <p class="#">{{ form.quizSetId.label }}  {{ form.quizSetId }}</p>
             <p class="#">{{ form.questionID.label }}  {{ form.questionID }}</p>
             <p class="#">{{ form.question.label }}  {{ form.question }}</p>
             <p style="margin-left:21rem">Correct Choice</p>
+               <!-- get answer from .lable -->
             <p class="#">
               {{ form.choiceA.label }} {{ form.choiceA }}
               <input class="checkbox" type="radio" name="choice" value="A" />

@@ -8,7 +8,7 @@
       href="static/upload_question_set2.css"
     />
     <link href="/static/style.css" rel="stylesheet" />
-
+<!-- extend for header and footer-->
     {% extends 'base.html' %} {% block content %}
 
     <div class="top">
@@ -29,8 +29,11 @@
       <div>
         <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
+            <!-- quiz set name -->
             <p>  {{ form.quizName.label }} {{ form.quizName(size = 100)}}</p>
+            <!-- quiz set description -->
             <p> {{ form.quizDescription.label }} {{ form.quizDescription(size = 1000)}}</p>
+            <!-- cover img-->
             <p> Upload Photo {{ form.picture }}  </p>
         <p class="#">
           {{ form.submit (class="button2")}}

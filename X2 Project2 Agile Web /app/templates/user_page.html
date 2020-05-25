@@ -4,12 +4,13 @@
     <link href="/static/style.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="static/default.css" />
     <link rel="stylesheet" type="text/css" href="static/user_page.css" />
-
+    <!-- extend for header and footer-->
     {% extends 'base.html' %} {% block content %}
 
     <body>
       <div class="top">
       </div>
+         <!-- left nav bar -->
       <div class="main">
         <div class="navbar2">
           <ul class="nav_ul2">
@@ -40,11 +41,13 @@
             </li>
           </ul>
         </div>
+           <!-- result  -->
         <div class="main_part">
           <h1> Welcome, {{ username }} !</h1>
           <div style="margin-bottom: 5rem;"></div>
           <div class="flexList container" style="margin-bottom: 5rem;">
               <table class="table">
+                   <!-- attempt quiz records -->
               <tr>
                   <th><strong>Attempted Quizzes Id</strong></th>
                   <th><strong>Attempted Quizzes Name</strong></th>
@@ -63,6 +66,7 @@
           </div>
           <div class="flexList container">
               <table class="table">
+                   <!-- upload quiz records -->
               <tr>
                   <th><strong>Uploaded Quizzes Id</strong></th>
                   <th><strong>Uploaded Quizzes Name</strong></th>
