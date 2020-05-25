@@ -6,24 +6,29 @@
     <link rel="stylesheet" type="text/css" href="/static/user_register.css" />
 
     {% extends 'base.html' %} {% block content %}
-
+  <!-- extend for header and footer-->
+  <!-- top bar -->
     <div class="top">
     </div>
+    <!-- main part -->
     <div class="box">
       <form action="" method="post">
         {{ form.hidden_tag()}}
+        <!--user id input -->
         <p class="#">
           {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
           in form.userID.errors %}
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
+        <!--new name input -->
         <p class="#">
           {{ form.newDisplayName.label }} {{ form.newDisplayName(size = 32)}} {% for error
           in form.newDisplayName.errors %}
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
+        <!-- submit button -->
         <p class="#">
           {{ form.submit (class="button2",style="text-align: center;")}}
         </p>
