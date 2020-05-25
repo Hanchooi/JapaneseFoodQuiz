@@ -37,6 +37,7 @@
                   <th><strong>Name</strong></th>
                   <th><strong>Status</strong></th>
                   <th><strong>Delete/Approve</strong></th>
+                  <th><strong>Modification</strong></th>
               </tr>
                {% for quizSet in quizSets %}
                   <tr>
@@ -44,10 +45,12 @@
                           <td>{{ quizSet.name }}</td>
                           <td>{{ quizSet.status }}</td>
                           {%  if quizSet.status== "approve" %}
-                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">delete</a></td>
+                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Delete</a></td>
                           {% else %}
-                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">approve</a></td>
+                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">Approve</a></td>
                           {% endif %}
+                          <td><a class="button2" href="/edit_question_set">Edit</a>
+                          </td>
                   </tr>
                {% endfor %}
        </table>
@@ -59,6 +62,7 @@
                   <th><strong>Question Id</strong></th>
                   <th><strong>Question</strong></th>
                   <th><strong>Correct Answer</strong></th>
+                  <th><strong>Modification</strong></th>
               </tr>
                {% for question in questions %}
                   <tr>
@@ -66,6 +70,8 @@
                           <td>{{ question.questionID }}</td>
                           <td>{{ question.question }}</td>
                           <td>{{ question.correctAnswer}} </td>
+                          <td><a class="button2" href="/edit_quiz">Edit</a>
+                          </td>
                   </tr>
                {% endfor %}
        </table>
