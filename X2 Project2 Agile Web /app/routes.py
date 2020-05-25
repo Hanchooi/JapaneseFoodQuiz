@@ -92,8 +92,8 @@ def manage_quiz():
     quizSets = QuizSet.query.all()
     for quizSet in quizSets:
         quizSetIds.append(quizSet.quizSetID)
-        if quizSet.status == "running":
-            quizSet.href = "/delete_quiz_set?id="+ str(quizSet.quizSetID)
+        #if quizSet.status == "running":
+        #quizSet.href = "/delete_quiz_set?id="+ str(quizSet.quizSetID)
     questions = Question.query.all()
     show_questions = []
     for question in questions:
@@ -115,6 +115,20 @@ def delete_quiz_set():
             else:
                 db.session.delete(quizSet)
 
+            db.session.commit()
+    return redirect('/manage_quiz')
+
+
+@app.route('/delete_quiz')
+@login_required
+def delete_quiz():
+    user = current_user
+    if user.name == 'admin':
+        id = request.args.get("id")
+        if id is not None:
+            question = Question.query.filter_by(questionID=int(id)).first()
+            db.session.delete(question)
+        else:
             db.session.commit()
     return redirect('/manage_quiz')
 
