@@ -11,14 +11,6 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-class SignUpForm(FlaskForm):
-    
-    userID = IntegerField('User ID:', validators=[DataRequired('Integer Input Required')])
-    displayName = StringField('Display Name:', validators=[DataRequired()])
-    password = PasswordField('Password:', validators=[DataRequired()])
-    retypePassword = PasswordField('Retype Password:', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign Up')
 
 class AdminForm(FlaskForm):
 
@@ -67,14 +59,14 @@ class UploadQuizFrom(FlaskForm):
     quizName = StringField('Quiz Name', validators=[DataRequired()])
     quizDescription = StringField('Quiz Description ', validators=[DataRequired()])
     picture = FileField('select picture',  validators=[DataRequired()])
-    submit = SubmitField('upload')
+    submit = SubmitField('Create Quiz Set')
 
 class EditQuizForm(FlaskForm):
     quizSetId = IntegerField('Quiz Set ID', validators=[DataRequired('Integer Input Required')])
     quizName = StringField('Quiz Name', validators=[DataRequired()])
     quizDescription = StringField('Quiz Description ', validators=[DataRequired()])
     picture = FileField('select picture',  validators=[DataRequired()])
-    submit = SubmitField('upload')
+    submit = SubmitField('Edit Quiz Set')
 
 class QuestionFrom(FlaskForm):
 
@@ -84,7 +76,7 @@ class QuestionFrom(FlaskForm):
     choiceB = StringField('choice B :', validators=[DataRequired()])
     choiceC = StringField('choice C :')
     choiceD = StringField('choice D :')
-    submit = SubmitField('upload')
+    submit = SubmitField('Add Question')
 
 class EditQuestionForm(FlaskForm):
     
@@ -95,7 +87,7 @@ class EditQuestionForm(FlaskForm):
     choiceB = StringField('choice B :', validators=[DataRequired()])
     choiceC = StringField('choice C :')
     choiceD = StringField('choice D :')
-    submit = SubmitField('upload')
+    submit = SubmitField('Edit Question')
 class AnswerForm(FlaskForm):
     submit = SubmitField('Next')
 

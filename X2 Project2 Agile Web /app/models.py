@@ -123,7 +123,7 @@ class Qsrelation(db.Model):
 def init():
     db.drop_all()
     db.create_all()
-    admin = User('1111111', 'admin', 'admin@uwa.studemt.edu.au')
+    admin = User('1111111', 'Admin', 'admin@uwa.studemt.edu.au')
     admin.set_password("admin")
     admin.set_status("admin")
 
