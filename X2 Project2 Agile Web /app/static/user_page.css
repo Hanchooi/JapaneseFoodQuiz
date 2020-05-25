@@ -19,6 +19,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* main part table */
 }
 
 .nav_ul {
@@ -39,3 +40,4 @@ button:hover {
   letter-spacing:1px;
   font-weight:bold;
 }
+/*nav bar*/

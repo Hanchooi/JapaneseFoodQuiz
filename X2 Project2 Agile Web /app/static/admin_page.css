@@ -2,12 +2,12 @@
   margin-left: 8.75rem;
   margin-top: 3.125rem;
 }
-
+/* search bar*/
 input {
   width: 12.5rem;
   height: 1.875rem;
 }
-
+/* input bar*/
 .date {
   margin-left: 8.75rem;
   margin-top: 1.875rem;
@@ -24,7 +24,7 @@ input {
   flex-direction: row;
   margin-left: 0.625rem;
 }
-
+/* content table in main part*/
 .nav_ul {
   width: 12.5rem;
   margin-right: 0;
@@ -54,10 +54,11 @@ li {
   letter-spacing:1px;
   font-weight:bold;
 }
-
+/* high light manager quiz*/
 .highlight_m_quiz {
   color:black;    
   text-shadow: 1px 0 #888888;
   letter-spacing:1px;
   font-weight:bold;
 }
+/* high light manage user */
