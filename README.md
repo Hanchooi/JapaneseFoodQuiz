@@ -6,32 +6,25 @@ Users can sign up to create profile, answer quizzes and upload quizzes !!
 
 This platform uses Flask + SQLite + SQL Alchemy framework for web app and back end settings.
 
-The packages required for for the virtual environment are:
+To set up this environment we need to first install the above mentioned Flask framework following intructions by:
 
-python, pip, flask, wtf form and e.t.c.
+https://flask.palletsprojects.com/en/1.1.x/installation/
 
-The command required to install the neccessary packages are as follow
+After that, all packages mentioned in requirements.txt has to set up. 
 
-python -m pip install --upgrade pip
+The Project is in the folder X2 Project2 Agile Web.
 
-pip3 install flask
 
-pip3 install wheel
+To login as Admin:
 
-pip3 install wtf
+login with userID   >>>>>   1111111
+and Password        >>>>>   admin
 
-pip3 install flask_wtf
+To login as user, you can either sign up an account or login with :
 
-pip3 install flask-login
+login with userID   >>>>>   1111
+and Password        >>>>>   1111
 
-pip3 install email_authentication
 
-pip3 install sqlalchemy
+Have fun answering Japanese Food Quizzes and create quizzes of your own !!!!
 
-pip3 install flask-sqlalchemy
-
-pip3 install flask-migrate
-
-pip3 install email_validator
-
-pip3 install python-dotenv
