@@ -29,6 +29,7 @@
       <div>
         <form method="post" enctype="multipart/form-data">
             {{ form.hidden_tag()}}
+            <p>  {{ form.quizSetId.label }} {{ form.quizSetId(size = 100)}}</p>
             <p>  {{ form.quizName.label }} {{ form.quizName(size = 100)}}</p>
             <p> {{ form.quizDescription.label }} {{ form.quizDescription(size = 1000)}}</p>
             <p> Upload Photo {{ form.picture }}  </p>

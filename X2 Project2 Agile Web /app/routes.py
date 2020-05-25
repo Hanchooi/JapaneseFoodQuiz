@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for,request
 from app import app, db
 from app.forms import LoginForm, AdminForm, SignUpForm, PasswordForm, NameForm,\
-RegistrationForm, UploadQuizFrom,QuestionFrom, AnswerForm
+RegistrationForm, UploadQuizFrom,QuestionFrom, AnswerForm, EditQuizForm, EditQuestionForm
 from app.models import User, QuizSet, Question, Answer
 from flask_login import login_user, logout_user, current_user, login_required
 import base64
@@ -53,29 +53,30 @@ def qa():
         return redirect('/user_page')
     if form.validate_on_submit():
         choice = request.form.get('choice')
-        if question is not None:
-            user = current_user
-            answer = Answer.query.filter_by(userID=user.id, quizSetID=quizSetId).first()
-            if answer is None:
-                answer = Answer(user.id, quizSetId)
-                db.session.add(answer)
-            record = answer.correctNumber.split(",")
-            if choice.lower() == question.correctAnswer.lower():
-                if str(question.questionID) not in record:
-                    if record == "":
-                        record = str(question.questionID)
-                    else:
-                        record.append(str(question.questionID))
-            answer.totalNumber = total_count
-            if len(record) > 0:
-                answer.correctNumber = ",".join(record)
-            else:
-                answer.correctNumber = ""
-            db.session.commit()
-            if index == len(questions)-1:
-                return redirect('/user_page')
-            else:
-                return redirect(next)
+        if choice is not None:
+            if question is not None:
+                user = current_user
+                answer = Answer.query.filter_by(userID=user.id, quizSetID=quizSetId).first()
+                if answer is None:
+                    answer = Answer(user.id, quizSetId)
+                    db.session.add(answer)
+                record = answer.correctNumber.split(",")
+                if choice.lower() == question.correctAnswer.lower():
+                    if str(question.questionID) not in record:
+                        if record == "":
+                            record = str(question.questionID)
+                        else:
+                            record.append(str(question.questionID))
+                answer.totalNumber = total_count
+                if len(record) > 0:
+                    answer.correctNumber = ",".join(record)
+                else:
+                    answer.correctNumber = ""
+                db.session.commit()
+                if index == len(questions)-1:
+                    return redirect('/user_page')
+                else:
+                    return redirect(next)
 
     return render_template('qa.html', form=form, question=question, index=index, quizSetId=quizSetId, picture=picture, next=next)
 
@@ -87,12 +88,18 @@ def manage_quiz():
     user = current_user
     if user.name != 'admin':
         return redirect('/admin')
+    quizSetIds = []
     quizSets = QuizSet.query.all()
     for quizSet in quizSets:
+        quizSetIds.append(quizSet.quizSetID)
         if quizSet.status == "running":
             quizSet.href = "/delete_quiz_set?id="+ str(quizSet.quizSetID)
     questions = Question.query.all()
-    return render_template('manage_quiz.html', quizSets=quizSets, questions=questions)
+    show_questions = []
+    for question in questions:
+        if question.quizSetID in quizSetIds:
+            show_questions.append(question)
+    return render_template('manage_quiz.html', quizSets=quizSets, questions=show_questions)
 
 
 @app.route('/delete_quiz_set')
@@ -143,6 +150,24 @@ def upload_quiz():
             db.session.commit()
     return render_template('upload_quiz.html', form=form)
 
+@app.route('/edit_quiz', methods=['GET', 'POST'])
+def edit_quiz():
+    form = EditQuestionForm()
+    id = request.args.get("id")
+    if id is not None:
+        form.quizSetId.data = id
+    if form.validate_on_submit():
+        quizSetId = form.quizSetId.data
+        quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
+        if quizSet is None:
+            flash("quizSet not exist")
+        else:
+            choice = request.form.get('choice')
+            question = Question(int(form.quizSetId.data), form.question.data, form.choiceA.data,
+                                form.choiceB.data, form.choiceC.data, form.choiceD.data, choice)
+            db.session.add(question)
+            db.session.commit()
+    return render_template('edit_quiz.html', form=form)
 
 
 @app.route('/manage_user')
@@ -173,6 +198,23 @@ def upload_question_set():
             return redirect('/upload_quiz?id=' + str(quizSet.quizSetID))
     return render_template('upload_question_set.html', form=form)
 
+@app.route('/edit_question_set', methods=['GET', 'POST'])
+def edit_question_set():
+    form = EditQuizForm()
+    user = current_user
+    if form.validate_on_submit():
+        file = request.files['picture']
+        if not (file and allowed_file(file.filename)):
+            flash("Unacceptable format")
+        else:
+            basepath = os.path.dirname(__file__)
+            upload_path = os.path.join(basepath, 'static/images', secure_filename(file.filename))
+            file.save(upload_path)
+            quizSet = QuizSet(name=form.quizName.data, description=form.quizDescription.data, picture=file.filename, userID=user.id)
+            db.session.add(quizSet)
+            db.session.commit()
+            return redirect('/upload_quiz?id=' + str(quizSet.quizSetID))
+    return render_template('edit_question_set.html', form=form)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -182,6 +224,8 @@ def allowed_file(filename):
 @login_required
 def user_page():
     user = current_user
+    if user.name == "admin":
+        return redirect('/manage_user')
     answers = Answer.query.filter_by(userID=int(user.id)).all()
     show_answers = []
     if answers and len(answers) > 0:
@@ -189,7 +233,7 @@ def user_page():
             records= answer.correctNumber.split(",")
             quiz_set = QuizSet.query.filter_by(quizSetID=answer.quizSetID).first()
             if quiz_set:
-                score = str(len(records))+"/"+str(answer.totalNumber)
+                score = str(len(records)-1)+"/"+str(answer.totalNumber)
                 show = {"quiz_set_id": answer.quizSetID, "name": quiz_set.name, "score": score}
                 show_answers.append(show)
     quiz_sets = QuizSet.query.all()

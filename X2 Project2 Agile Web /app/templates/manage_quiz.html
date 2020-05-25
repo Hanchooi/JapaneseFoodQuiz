@@ -44,9 +44,9 @@
                           <td>{{ quizSet.name }}</td>
                           <td>{{ quizSet.status }}</td>
                           {%  if quizSet.status== "approve" %}
-                          <td style="text-align: center;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">delete</a></td>
+                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">delete</a></td>
                           {% else %}
-                          <td style="text-align: center;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">submit</a></td>
+                          <td style="text-align: left;" ><a href="/delete_quiz_set?id={{ quizSet.quizSetID }}">approve</a></td>
                           {% endif %}
                   </tr>
                {% endfor %}

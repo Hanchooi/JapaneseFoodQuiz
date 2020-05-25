@@ -69,6 +69,12 @@ class UploadQuizFrom(FlaskForm):
     picture = FileField('select picture',  validators=[DataRequired()])
     submit = SubmitField('upload')
 
+class EditQuizForm(FlaskForm):
+    quizSetId = StringField('Quiz Set ID', validators=[DataRequired()])
+    quizName = StringField('Quiz Name', validators=[DataRequired()])
+    quizDescription = StringField('Quiz Description ', validators=[DataRequired()])
+    picture = FileField('select picture',  validators=[DataRequired()])
+    submit = SubmitField('upload')
 
 class QuestionFrom(FlaskForm):
 
@@ -80,6 +86,16 @@ class QuestionFrom(FlaskForm):
     choiceD = StringField('choice D :')
     submit = SubmitField('upload')
 
+class EditQuestionForm(FlaskForm):
+    
+    quizSetId = StringField('Quiz Set id :', validators=[DataRequired('')])
+    questionID = StringField('Question ID :', validators=[DataRequired()])
+    question = StringField('Question :', validators=[DataRequired()])
+    choiceA = StringField('choice A :', validators=[DataRequired()])
+    choiceB = StringField('choice B :', validators=[DataRequired()])
+    choiceC = StringField('choice C :')
+    choiceD = StringField('choice D :')
+    submit = SubmitField('upload')
 class AnswerForm(FlaskForm):
     submit = SubmitField('Next')
 
