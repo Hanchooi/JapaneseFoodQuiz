@@ -45,23 +45,22 @@ def qa():
         if len(questions) > 0:
             if index < len(questions):
                 question = questions[index]
-                next += "index="+str(index+1)
+                next += "&index="+str(index+1)
             else:
-                flash("complete")
+                flash("finish")
     if question is None:
         flash("no question")
         return redirect('/user_page')
     if form.validate_on_submit():
+        choice = request.form.get('choice')
         if question is not None:
             user = current_user
             answer = Answer.query.filter_by(userID=user.id, quizSetID=quizSetId).first()
             if answer is None:
                 answer = Answer(user.id, quizSetId)
                 db.session.add(answer)
-                db.session.commit()
-                answer = Answer.query.filter_by(userID=user.id, quizSetId=quizSetId).first()
             record = answer.correctNumber.split(",")
-            if form.answer.data.lower() == question.correctAnswer.lower():
+            if choice.lower() == question.correctAnswer.lower():
                 if str(question.questionID) not in record:
                     if record == "":
                         record = str(question.questionID)
@@ -73,7 +72,12 @@ def qa():
             else:
                 answer.correctNumber = ""
             db.session.commit()
-    return render_template('qa.html', form=form, question=question, index=index, quizSetId=quizSetId, picture=picture, next = next)
+            if index == len(questions)-1:
+                return redirect('/user_page')
+            else:
+                return redirect(next)
+
+    return render_template('qa.html', form=form, question=question, index=index, quizSetId=quizSetId, picture=picture, next=next)
 
 
 
@@ -87,7 +91,8 @@ def manage_quiz():
     for quizSet in quizSets:
         if quizSet.status == "running":
             quizSet.href = "/delete_quiz_set?id="+ str(quizSet.quizSetID)
-    return render_template('manage_quiz.html', quizSets=quizSets)
+    questions = Question.query.all()
+    return render_template('manage_quiz.html', quizSets=quizSets, questions=questions)
 
 
 @app.route('/delete_quiz_set')
@@ -101,7 +106,7 @@ def delete_quiz_set():
             if quizSet.status == "pending":
                 quizSet.set_status("approve")
             else:
-                quizSet.set_status("finish")
+                db.session.delete(quizSet)
             db.session.commit()
     return redirect('/manage_quiz')
 
@@ -121,8 +126,10 @@ def update():
 
 @app.route('/upload_quiz', methods=['GET', 'POST'])
 def upload_quiz():
-
     form = QuestionFrom()
+    id = request.args.get("id")
+    if id is not None:
+        form.quizSetId.data = id
     if form.validate_on_submit():
         quizSetId = form.quizSetId.data
         quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId))
@@ -134,7 +141,6 @@ def upload_quiz():
                                 form.choiceB.data, form.choiceC.data, form.choiceD.data, choice)
             db.session.add(question)
             db.session.commit()
-            return redirect('/user_page')
     return render_template('upload_quiz.html', form=form)
 
 
@@ -164,8 +170,7 @@ def upload_question_set():
             quizSet = QuizSet(name=form.quizName.data, description=form.quizDescription.data, picture=file.filename, userID=user.id)
             db.session.add(quizSet)
             db.session.commit()
-            flash("sucess, quiz set id:" + str(quizSet.quizSetID))
-            return redirect('/user_page')
+            return redirect('/upload_quiz?id=' + str(quizSet.quizSetID))
     return render_template('upload_question_set.html', form=form)
 
 

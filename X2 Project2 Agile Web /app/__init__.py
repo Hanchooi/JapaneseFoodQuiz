@@ -14,5 +14,4 @@ login.session_protection = 'strong'
 login.login_view = 'user_login'
 
 
-
 from app import routes, models

@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+  <td>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/static/style.css" rel="stylesheet" />
     <link href="/static/qa.css" rel="stylesheet" />
@@ -36,9 +36,7 @@
                     <tr>
                         <td style="width:240px; height:240px; text-align:left; vertical-align:top">
                            {{ question.question }}
-                            <br />...
-                            <br />...
-                            <br />
+
                             <br />
                             ANSWERS:<br /><br />
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A. {{ question.choiceA }}
@@ -49,33 +47,31 @@
                             <br /><br />
                                 {% if question.choiceC %}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.{{ question.choiceC }}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.{{ question.choiceC }}
                                  {% endif %}
                         </td>
                     </tr>
-                  </table>
-                  </p>
-                  <div class="box" style="text-align:center">
-                      <form action="" method="post">
-                        {{ form.hidden_tag()}}
-                        <p class="#" style="text-align=ce">
-                          {{ form.answer.label }} {{ form.answer(size = 32)}}
-                        </p>
-                        <p class="#">
-                          {{ form.submit (class="button2")}}
-                        </p>
-                      </form>
-                </div>
-            {% endif %}
-            <table class="tbSbmtCss">
                     <tr>
-                        <a href="{{ next }}" class="button2" style="text-align:center;">
-                            <p><button class="button2">Next>>></button></p>
-                        </a>
+                        <td>
+                       <form action="" method="post">
+                            {{ form.hidden_tag()}}
+                               <li>
+                                ANSWER :<br /><br />
+                                <input type="radio"  name="choice" value="A">A. {{ question.choiceA }}
+                                <input type="radio"  name="choice" value="B">B. {{ question.choiceB }}
+                                <input type="radio"  name="choice" value="C">C. {{ question.choiceC }}
+                                <input type="radio"  name="choice" value="D">D. {{ question.choiceD }}
+                                </li>
+                            <p class="#">
+                              {{ form.submit (class="button2")}}
+                            </p>
+                          </form>
+                        </td>
                     </tr>
-           </table>
+                  </table>
+            {% endif %}
 
 {% endblock %}

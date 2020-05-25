@@ -81,6 +81,5 @@ class QuestionFrom(FlaskForm):
     submit = SubmitField('upload')
 
 class AnswerForm(FlaskForm):
-    answer = StringField('Answer :', validators=[DataRequired()])
-    submit = SubmitField('submit')
+    submit = SubmitField('Next')
 
