@@ -88,15 +88,18 @@ input:focus {
   padding: 0;
   border-right: 0.0625rem solid #2f3e4e;
   height: 100%;
+  /* left navbar on left*/
 }
 
 .nav_ul2 {
   width: 12.5rem;
   margin-right: 3.125rem;
   margin-top: 3.125rem;
+  /* nav ul style*/
 }
 .nav_list2 {
   padding-bottom: 1.25rem;
+  /* left nav li style */
 }
 
 .nav_list2_bottom {

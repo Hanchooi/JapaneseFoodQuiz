@@ -6,8 +6,9 @@
     <link rel="stylesheet" type="text/css" href="/static/user_register.css" />
 
     {% extends 'base.html' %} {% block content %}
-
-    <div class="top">
+      <!-- extend for header and footer-->
+       <!-- top bar -->
+    <div class="top"> 
     </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -23,6 +24,7 @@
     <div class="box">
       <form action="" method="post">
         {{ form.hidden_tag()}}
+         <!-- id input-->
         <p class="#">
           {{ form.userID.label }} {{ form.userID(size = 32)}} {% for error
           in form.userID.errors %}
@@ -30,6 +32,7 @@
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
+         <!-- password input-->
         <p class="#">
           {{ form.password.label }} {{ form.password(size = 32)}} {% for error
           in form.password.errors %}
@@ -37,6 +40,7 @@
           <span style="color: red;"> [{{ error}}]</span>
           {% endfor %}
         </p>
+        <!-- login button -->
         <p class="#">
           {{ form.submit (class="button2",style="text-align: center;")}}
         </p>
