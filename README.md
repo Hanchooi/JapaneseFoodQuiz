@@ -18,11 +18,13 @@ The Project is in the folder X2 Project2 Agile Web.
 To login as Admin:
 
 login with userID   >>>>>   1111111
+
 and Password        >>>>>   admin
 
 To login as user, you can either sign up an account or login with :
 
 login with userID   >>>>>   1111
+
 and Password        >>>>>   1111
 
 
