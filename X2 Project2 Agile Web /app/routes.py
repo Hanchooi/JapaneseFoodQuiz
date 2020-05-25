@@ -85,7 +85,7 @@ def qa():
 @login_required
 def manage_quiz():
 	user = current_user
-	if user.name != 'admin':
+	if user.id != '1111111':
 		return redirect('/admin')
 	quizSetIds = []
 	quizSets = QuizSet.query.all()
@@ -105,7 +105,7 @@ def manage_quiz():
 @login_required
 def delete_quiz_set():
 	user = current_user
-	if user.name == 'admin':
+	if user.id == '1111111':
 		quizSetId = request.args.get('id')
 		if quizSetId is not None:
 			quizSet = QuizSet.query.filter_by(quizSetID=int(quizSetId)).first()
@@ -122,7 +122,7 @@ def delete_quiz_set():
 @login_required
 def delete_quiz():
 	user = current_user
-	if user.name == 'admin':
+	if user.id == '1111111':
 		id = request.args.get("id")
 		if id is not None:
 			question = Question.query.filter_by(questionID=int(id)).first()
@@ -133,7 +133,7 @@ def delete_quiz():
 @app.route('/update')
 def update():
 	user = current_user
-	if user.name == 'admin':
+	if user.id == '1111111':
 		userID = request.args.get('id')
 		if userID is not None:
 			user = User.query.filter_by(id=int(userID)).first()
@@ -203,9 +203,9 @@ def edit_quiz():
 @login_required
 def manage_user():
 	user = current_user
-	if user.name != 'admin':
+	if user.id != '1111111':
 		return redirect('/admin')
-	users = User.query.filter(User.name!="admin")
+	users = User.query.filter(User.id!="1111111")
 	return render_template('manage_user.html', users=users, username=current_user.name)
 
 
@@ -262,7 +262,7 @@ def allowed_file(filename):
 @login_required
 def user_page():
 	user = current_user
-	if user.name == "admin":
+	if user.id == "1111111":
 		return redirect('/manage_user')
 	answers = Answer.query.filter_by(userID=int(user.id)).all()
 	show_answers = []
@@ -314,7 +314,7 @@ def user_login():
 			return redirect(url_for('user_login'))
 		login_user(user, remember=form.remember_me.data)
 
-		if user.name == 'admin':
+		if user.id == '1111111':
 			return redirect('/manage_user')
 		else:
 			return redirect('/user_page')

@@ -29,29 +29,13 @@
             {% if question %}
 
                  <p style="text-align:center;">
-                 <table class="tbCss" align="center">
+                 <table class="tbCss mb-5" align="center">
                     <tr>
-                        <td style="width:480px; height:120px; text-align:center"> <img src="{{ picture }}" width="400" height="400" alt="miss～～"/></td>
+                        <td style="width:480px; height:120px; text-align:center"> <img src="{{ picture }}" width="400" alt="miss～～"/></td>
                     </tr>
                     <tr>
-                        <td style="width:240px; height:240px; text-align:left; vertical-align:top">
-                           {{ question.question }}
-
-                            <br />
-                            ANSWERS:<br /><br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A. {{ question.choiceA }}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.{{ question.choiceB }}
-                            <br /><br />
-                                {% if question.choiceC %}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C.{{ question.choiceC }}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D.{{ question.choiceD }}
-                                 {% endif %}
+                        <td style="width:240px; text-align:left; vertical-align:top;">
+                           QUESTION:<br /><br /> {{ question.question }}
                         </td>
                     </tr>
                     <tr>
@@ -59,13 +43,16 @@
                        <form action="" method="post">
                             {{ form.hidden_tag()}}
                                <li>
-                                ANSWER :<br /><br />
-                                <input type="radio"  name="choice" value="A">A. {{ question.choiceA }}
-                                <input type="radio"  name="choice" value="B">B. {{ question.choiceB }}
-                                <input type="radio"  name="choice" value="C">C. {{ question.choiceC }}
-                                <input type="radio"  name="choice" value="D">D. {{ question.choiceD }}
+                                   ANSWER :<br /><br />
+                                <input style="margin-right: 1rem;" type="radio"  name="choice" value="A">A. {{ question.choiceA }}
+                                <br /><br />
+                                <input style="margin-right: 1rem;" type="radio"  name="choice" value="B">B. {{ question.choiceA }}
+                                <br /><br />
+                                <input style="margin-right: 1rem;" type="radio"  name="choice" value="C">C. {{ question.choiceA }}
+                                <br /><br />
+                                <input style="margin-right: 1rem;" type="radio"  name="choice" value="D">D. {{ question.choiceA }}
                                 </li>
-                            <p class="#">
+                            <p class="mt-5">
                               {{ form.submit (class="button2")}}
                             </p>
                           </form>
