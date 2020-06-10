@@ -13,10 +13,13 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp'])
 @app.route('/')
 @app.route('/index')
 def index():
-	return render_template('index.html')
-
+	user = current_user
+	if user.is_authenticated:
+		return render_template('index.html', username=current_user.name)
+	return render_template('index.html' )
 
 @app.route('/qs')
+@login_required
 def qs():
 	quizSets = QuizSet.query.filter_by(status="approve").all()
 	for quizSet in quizSets:
@@ -25,6 +28,7 @@ def qs():
 	return render_template('qs.html', quizSets=quizSets, base64=base64, username=current_user.name)
 
 @app.route('/qa', methods=['GET', 'POST'])
+@login_required
 def qa():
 	form = AnswerForm()
 	quizSetId = int(request.args.get('id'))
@@ -143,6 +147,7 @@ def delete_quiz():
 
 
 @app.route('/update')
+@login_required
 def update():
 	user = current_user
 	if user.id == '1111111':
@@ -156,6 +161,7 @@ def update():
 
 
 @app.route('/upload_quiz', methods=['GET', 'POST'])
+@login_required
 def upload_quiz():
 	form = QuestionFrom()
 	id = request.args.get("id")
@@ -183,6 +189,7 @@ def upload_quiz():
 
 
 @app.route('/edit_quiz', methods=['GET', 'POST'])
+@login_required
 def edit_quiz():
 	form = EditQuestionForm()
 	id = request.args.get("id")
@@ -214,6 +221,7 @@ def edit_quiz():
 	return render_template('edit_quiz.html', form=form, username=current_user.name)
 
 @app.route('/view_quiz', methods=['GET', 'POST'])
+@login_required
 def view_quiz():
 	form = EditQuestionForm()
 	id = request.args.get("id")
@@ -259,6 +267,7 @@ def manage_user():
 
 
 @app.route('/upload_question_set', methods=['GET', 'POST'])
+@login_required
 def upload_question_set():
 	form = UploadQuizFrom()
 	user = current_user
@@ -277,6 +286,7 @@ def upload_question_set():
 	return render_template('upload_question_set.html', form=form, username=current_user.name)
 
 @app.route('/view_question_set', methods=['GET', 'POST'])
+@login_required
 def view_question_set():
 	form = EditQuizForm()
 	user = current_user
@@ -304,6 +314,7 @@ def view_question_set():
 	return render_template('view_question_set.html', form=form, username=current_user.name)
 
 @app.route('/edit_question_set', methods=['GET', 'POST'])
+@login_required
 def edit_question_set():
 	form = EditQuizForm()
 	user = current_user
@@ -368,6 +379,13 @@ def user_page():
 @app.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
 	form = AdminForm()
+	user = current_user
+	if user.is_authenticated:
+		if user.id == '1111111':
+			return redirect('/manage_user')
+		else:
+			return redirect('/user_page')
+
 	if form.validate_on_submit():
 		user = User.query.filter_by(id=form.userID.data).first()
 		if user is None or not user.check_password(form.password.data):
@@ -382,6 +400,13 @@ def admin_login():
 @app.route('/user_login', methods=['GET', 'POST'])
 def user_login():
 	form = LoginForm()
+	user = current_user
+	if user.is_authenticated:
+		if user.id == '1111111':
+			return redirect('/manage_user')
+		else:
+			return redirect('/user_page')
+
 	if form.validate_on_submit():
 		user = User.query.filter_by(id=form.userID.data).first()
 		if user is None or not user.check_password(form.password.data):
@@ -400,6 +425,12 @@ def user_login():
 @app.route('/user_register', methods=['GET', 'POST'])
 def user_signUp():
 	form = RegistrationForm()
+	user = current_user
+	if user.is_authenticated:
+		if user.id == '1111111':
+			return redirect('/manage_user')
+		else:
+			return redirect('/user_page')
 	if form.validate_on_submit():
 		user = User(id=form.userID.data, name=form.username.data, email=form.email.data)
 		user.set_password(form.password.data)
@@ -419,6 +450,9 @@ def user_change_password():
 	form.userID.data = current_user.id
 	if form.validate_on_submit():
 		user = current_user
+		if user is None or not user.check_password(form.oldPassword.data):
+			flash("Invalid password")
+			return redirect(url_for('user_change_password'))
 		user.set_password(form.newPassword.data)
 		db.session.commit()
 		return redirect('/user_page')
